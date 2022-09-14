@@ -1,0 +1,22 @@
+{% load static %}
+
+<div id="social-logins">
+    <div class="d-inline-block mb-1">
+        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'google-oauth2' %}?next={{ next }}" role="button">
+        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="{% static 'account/logo_google-oauth2.svg' %}" />
+        Mit Google anmelden
+        </a>
+    </div>
+    <div class="d-inline-block mb-1">
+        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'github' %}?next={{ next }}" role="button">
+        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="GitHub sign-in" src="{% static 'account/logo_github.svg' %}" />
+        Mit GitHub anmelden
+        </a>
+    </div>
+    <div class="d-inline-block mb-1">
+        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'discord' %}?next={{ next }}" role="button">
+        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="Discord sign-in" src="{% static 'account/logo_discord.svg' %}" />
+        Mit Discord anmelden
+        </a>
+    </div>
+</div>

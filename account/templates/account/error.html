@@ -1,0 +1,14 @@
+{% extends 'account/base.html' %}}
+
+{% block title %}Error{% endblock %}
+
+{% block error %}
+
+    <div class="row">
+        <div class="col">
+            <h3>{{ title | default:"404 - Nicht gefunden" }}</h3>
+            <p>{{ text | default:"Diese Seite wurde leider nicht gefunden!"}}</p>
+        </div>
+    </div>
+    
+{% endblock %}

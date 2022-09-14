@@ -1,0 +1,84 @@
+<nav id="menubar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    {% url 'account:home' as homeurl %}
+
+    <style>
+        @media (min-width: 992px) {
+            .border-lg {
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+
+    <div class="container-fluid">
+        <a class="navbar-brand ms-3" href="{{ navbarhomeurl | default:homeurl }}">{{ navbarhometitle | default:"Accountverwaltung"}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav nav w-100 me-1 mb-2 justify-content-end">
+                {% if not request.path == "/" %}
+                    <li class="nav-item border-lg rounded border-secondary ms-2">
+                        <a class="nav-link ms-1 me-1" href="{% url 'account:leave' %}" title="Zurück zur App">
+                            <i class="fas fa-fw fa-door-open"></i>
+                            <span class="d-lg-none ms-2">Zurück zur App</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                    <li class="nav-item border-lg rounded border-secondary ms-2">
+                        <a class="nav-link ms-1 me-1" href="{% url 'account:login' %}" title="Login">
+                            <i class="fas fa-fw fa-sign-in-alt"></i>
+                            <span class="d-lg-none">Login</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item border-lg rounded border-secondary ms-2">
+                        <a class="nav-link ms-1 me-1" href="{% url 'account:home' %}" title="Accountverwaltung">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span class="d-lg-none ms-2">Account:</span>
+                            <span class="ms-0 ms-lg-2">{{ user.username }}</span>
+                        </a>
+                    </li>
+                    {% if user.is_staff %}
+                        <li class="nav-item border-lg rounded border-secondary ms-2">
+                            <a class="nav-link ms-1 me-1" href="{% url 'admin:index' %}" title="Admin">
+                                <i class="fas fa-fw fa-user-shield"></i>
+                                <span class="d-lg-none ms-2">Admin</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if user.has_usable_password %}
+                        <li class="nav-item border-lg rounded border-secondary ms-2">
+                            <a class="nav-link ms-1 me-1" href="{% url 'account:password-change' %}" title="Passwort ändern">
+                                <i class="fas fa-fw fa-key"></i>
+                                <span class="d-lg-none ms-2">Passwort ändern</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item border-lg rounded border-secondary ms-2">
+                            <a class="nav-link ms-1 me-1" href="{% url 'account:password-reset' %}}" title="Passwort setzen">
+                                <i class="fas fa-fw fa-key"></i>
+                                <span class="d-lg-none ms-2">Passwort (zurück)setzen</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item border-lg rounded border-secondary ms-2">
+                        <form method="post" action="{% url 'account:logout' %}">
+                            {% csrf_token %}
+                            <button class="btn nav-link ms-1 me-1" type="submit">
+                                <i class="fas fa-fw fa-sign-out-alt"></i>
+                                <span class="d-lg-none ms-2">Logout</span>
+                            </button>
+                        </form>
+                    </li>
+                {% endif %}
+                <li class="nav-item border-lg rounded border-secondary ms-2">
+                    <a class="nav-link ms-1 me-1" title="Hilfe" data-bs-toggle="offcanvas" data-bs-target="#helpCanvas" aria-controls="helpCanvas">
+                        <i class="far fa-fw fa-question-circle"></i>
+                        <span class="d-lg-none ms-2">Hilfe</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

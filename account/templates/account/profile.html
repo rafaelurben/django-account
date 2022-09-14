@@ -1,0 +1,37 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Dein Profil{{ block.super }}{% endblock %}
+
+{% block content %}
+    {% url 'account:home' as homeurl %}
+
+    <h2>Dein Profil</h2>
+    <p>
+        Hier kannst du deine persönlichen Daten ändern.
+        (<a href="#" data-bs-toggle="offcanvas" data-bs-target="#helpCanvas" aria-controls="helpCanvas">Hilfe</a>)
+    </p>
+
+    <form method="post">
+        <input type="hidden" name="next" value="{{ homeurl }}">
+
+        {% include 'account/snippets/form.html' with form=form %}
+
+        <br>
+        <input type="submit" class="btn btn-warning" value="Speichern und zurück">
+        <a class="btn btn-secondary" href="{{ homeurl }}">Zurück</a>
+    </form>
+
+{% endblock %}
+
+{% block help %}
+    <p>
+        Auf dieser Seite kannst du deinen Namen ändern.
+        <br>
+        Die Änderung der E-Mail-Adresse ist zurzeit aus technischen Gründen 
+        leider nicht selbstständig möglich. Kontaktiere mich dazu bitte.
+    </p>
+
+    <hr>
+
+    {{ block.super }}
+{% endblock %}

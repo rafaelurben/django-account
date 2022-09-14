@@ -1,0 +1,17 @@
+{% if messages %}
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        {% if message.level_tag == "error" %}
+        <div class="alert alert-danger {{ message.extra_tags }} alert-dismissible" role="alert" >
+            <strong>Error:</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-{{ message.level_tag }} {{ message.extra_tags }} alert-dismissible" role="alert" >
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endif %}

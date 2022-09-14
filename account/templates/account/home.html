@@ -1,0 +1,96 @@
+{% extends 'account/base.html' %}
+
+{% load static %}
+
+{% block title %}Startseite{% endblock %}
+
+{% block content %}
+    {% url 'account:home' as accounthome %}
+
+    <h2>Dein Account</h2>
+
+    <p>
+        Hallo {{ user.first_name | default:user.username }}! Du befindest dich hier auf der Startseite der Accountverwaltung deines Accounts für Rafaels Webapps.
+    </p>
+
+    <p>
+        <a class="btn btn-outline-danger" href="{% url 'account:leave' %}">
+            <i class="fas fa-arrow-left me-1"></i>
+            Zurück zur App
+        </a>
+    </p>
+
+    <h3>Deine Infos</h3>
+
+    <p class="mb-3">Folgende Infos werden bei Apps mit diesem Login verwendet:</p>
+
+    <div class="mb-2">
+        <label for="email">E-Mail</label>
+        <input id="email" name="email" type="email" disabled class="form-control disabled" value="{{ user.email }}" placeholder="- (nicht festgelegt)">
+    </div>
+    
+    <div class="mb-2">
+        <label for="username">Benutzername</label>
+        <input id="username" name="username" type="text" disabled class="form-control disabled" value="{{ user.username }}" placeholder="- (nicht festgelegt)">
+    </div>
+    
+    <div class="mb-2">
+        <label for="first_name">Vorname</label>
+        <input id="first_name" name="first_name" type="text" disabled class="form-control disabled" value="{{ user.first_name }}" placeholder="- (nicht festgelegt)">
+    </div>
+
+    <div class="mb-1">
+        <label for="last_name">Nachname</label>
+        <input id="last_name" name="last_name" type="text" disabled class="form-control disabled" value="{{ user.last_name }}" placeholder="- (nicht festgelegt)">
+    </div>
+
+    <br>
+
+    <a class="btn btn-secondary mb-1" href="{% url 'account:profile' %}">
+        Profil bearbeiten
+    </a>
+
+    <br><br>
+
+    <h3>Passwort</h3>
+
+    <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern.</p>
+
+    {% if user.has_usable_password %}
+        <a class="btn btn-secondary mb-1" href="{% url 'account:password-reset' %}">
+            Passwort zurücksetzen
+        </a>
+
+        <a class="btn btn-secondary mb-1" href="{% url 'account:password-change' %}">
+            Passwort ändern
+        </a>
+    {% else %}
+        <a class="btn btn-secondary mb-1" href="{% url 'account:password-reset' %}">
+            Passwort setzen
+        </a>
+    {% endif %}
+
+    <br><br>
+
+    <h3>OAuth-Provider</h3>
+    
+    <p>
+        Du hast folgende OAuth-Provider registriert: (klicke zum entfernen)
+    </p>
+
+    {% include "account/snippets/social_manage.html" with next=accounthome %}
+
+    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
+
+    {% include "account/snippets/social_login.html" with next=accounthome %}
+
+{% endblock %}
+
+{% block help %}
+    <p>Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran vornehmen.</p>
+    <p>Möchtest du deinen Account löschen? Dann kontaktiere mich unter der unten verlinkten E-Mail-Adresse.</p>
+
+    <hr>
+
+    {{ block.super }}
+{% endblock %}

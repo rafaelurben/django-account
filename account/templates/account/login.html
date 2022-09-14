@@ -1,0 +1,61 @@
+{% extends 'account/base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    {% url 'account:leave' as leave %}
+
+    <h2>Login</h2>
+
+    <p>Hinweis: Erstellen eines neuen Accounts ist zurzeit nur via OAuth-Provider möglich.</p>
+
+    <p>
+        <a class="btn btn-outline-danger" href="{{ leave }}">
+            <i class="fas fa-arrow-left me-1"></i>
+            Zurück zur App
+        </a>
+    </p>
+
+    <h3>Weiter via OAuth</h3>
+
+    <p>
+        Unabhängig davon, ob du bereits einen Account besitzt oder nicht, kannst du dich 
+        mit folgenden Methoden einloggen.
+    </p>
+
+    {% include "account/snippets/social_login.html" with next=leave %}
+
+    <br>
+
+    <h3>Login mit Passwort</h3>
+
+    <p class="mb-3">Du hast einen Benutzernamen und kennst dein Passwort? Dann kannst du dich hier einloggen.</p>
+
+    <form method="post">
+        <input type="hidden" name="next" value="{{ leave }}">
+
+        {% include 'account/snippets/form.html' with form=form %}
+
+        <input type="submit" class="btn btn-success" value="Einloggen">
+    </form>
+
+    <br>
+
+    <h3>Passwort vergessen?</h3>
+
+    <p class="mb-3">
+        Hast du dein Passwort vergessen? Hier kannst du es zurücksetzen oder dein erstes Passwort setzen, 
+        falls du bisher noch keines verwendet hast. 
+        <br>
+        PROTIP: Dabei erhältst du auch deinen Benutzernamen zugeschickt.
+    </p>
+
+    <p>
+        <a class="btn btn-warning" href="{% url 'account:password-reset' %}">
+            Passwort (zurück-)setzen
+        </a>
+    </p>
+
+{% endblock %}
