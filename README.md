@@ -1,6 +1,25 @@
 # Django accounts
 
-A simple django app used in <https://app.rafaelurben.ch/> to manage user accounts. Not meant to be used without modifications.
+A simple django app used in <https://app.rafaelurben.ch/account> to manage user accounts. Not meant to be used elsewhere without further modifications.
+
+Depends on [social-auth-app-django](https://github.com/python-social-auth/social-app-django).
+
+## Features
+
+- [x] Account overview page
+- [x] OAuth2 login and registration via
+  - [x] Google
+  - [x] Discord
+  - [x] GitHub
+- [x] Login via username and password
+- [x] Password change / reset
+- [x] Logout
+- [x] "Back to app" button
+- [x] Help section
+
+### Planned features
+
+- [ ] Register via email
 
 ## Example settings
 
