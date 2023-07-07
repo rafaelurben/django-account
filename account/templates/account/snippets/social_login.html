@@ -1,22 +1,48 @@
 {% load static %}
 
-<div id="social-logins">
-    <div class="d-inline-block mb-1">
+<div id="social-logins" class="account-social-logins">
+    <style>
+        .account-social-logins {
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .account-social-logins > div {
+            margin-bottom: 0.25rem;
+            display: flex;
+        }
+
+        .account-social-logins > div > a {
+            flex-grow: 1;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            align-self: start;
+        }
+
+        .account-social-logins > div > a > img {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+        }
+    </style>
+    <div>
         <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'google-oauth2' %}?next={{ next }}" role="button">
-        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="{% static 'account/logo_google-oauth2.svg' %}" />
-        Mit Google anmelden
+            <img alt="Google sign-in" src="{% static 'account/logo_google-oauth2.svg' %}" />
+            <span>Mit Google anmelden</span>
         </a>
     </div>
-    <div class="d-inline-block mb-1">
+    <div>
         <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'github' %}?next={{ next }}" role="button">
-        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="GitHub sign-in" src="{% static 'account/logo_github.svg' %}" />
-        Mit GitHub anmelden
+            <img alt="GitHub sign-in" src="{% static 'account/logo_github.svg' %}" />
+            <span>Mit GitHub anmelden</span>
         </a>
     </div>
-    <div class="d-inline-block mb-1">
+    <div>
         <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'discord' %}?next={{ next }}" role="button">
-        <img height="20px" style="margin-bottom:3px; margin-right:5px" alt="Discord sign-in" src="{% static 'account/logo_discord.svg' %}" />
-        Mit Discord anmelden
+            <img alt="Discord sign-in" src="{% static 'account/logo_discord.svg' %}" />
+            <span>Mit Discord anmelden</span>
         </a>
     </div>
 </div>

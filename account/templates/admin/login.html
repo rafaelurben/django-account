@@ -1,0 +1,38 @@
+{% extends "admin/login.html" %}
+
+{% block footer %}
+    {{ block.super }}
+
+    <style>
+        .btn {
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .account-social-logins > div > a {
+            background-color: white;
+            color: black;
+            border-color: black !important;
+        }
+        .account-social-logins {
+            flex-direction: column;
+        }
+    </style>
+    <hr>
+    <div style="margin: 1.3rem;">
+        {% include "account/snippets/social_login.html" with next=next %}
+    </div>
+
+{% endblock %}
