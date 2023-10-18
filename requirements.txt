@@ -1,2 +1,2 @@
 django==4.2.6
-social-auth-app-django==5.3.0 
+social-auth-app-django==5.4.0 
