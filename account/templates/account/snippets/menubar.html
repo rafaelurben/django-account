@@ -18,9 +18,9 @@
             <ul class="navbar-nav nav w-100 me-1 mb-2 justify-content-end">
                 {% if not request.path == "/" %}
                     <li class="nav-item border-lg rounded border-secondary ms-2">
-                        <a class="nav-link ms-1 me-1" href="{% url 'account:leave' %}" title="Zurück zur App">
+                        <a class="nav-link ms-1 me-1" href="{% url 'account:leave' %}" title="Accountverwaltung verlassen">
                             <i class="fas fa-fw fa-door-open"></i>
-                            <span class="d-lg-none ms-2">Zurück zur App</span>
+                            <span class="d-lg-none ms-2">Accountverwaltung verlassen</span>
                         </a>
                     </li>
                 {% endif %}

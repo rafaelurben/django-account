@@ -8,7 +8,7 @@
                     <div class="d-inline-block mb-1">
                         <form method="post" action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={{ next }}">
                             {% csrf_token %}
-                            <button class="btn btn-outline-dark" href="" role="button" type="submit">
+                            <button class="btn btn-outline-danger" href="" role="button" type="submit">
                                 <img height="20px" style="margin-bottom:3px; margin-right:5px" src="{% static providerimage %}" />
                                 {% firstof account.extra_data.display_name account.uid %}
                             </button>
