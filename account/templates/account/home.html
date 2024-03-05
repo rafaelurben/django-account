@@ -52,6 +52,20 @@
 
     <br><br>
 
+    <h3>OAuth-Provider</h3>
+
+    <p>
+        Du hast folgende OAuth-Provider registriert: (klicke zum entfernen)
+    </p>
+
+    {% include "account/snippets/social_manage.html" with next=accounthome %}
+
+    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
+
+    {% include "account/snippets/social_login.html" with next=accounthome %}
+
+    <br>
+
     <h3>Passwort</h3>
 
     <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern.</p>
@@ -72,23 +86,19 @@
 
     <br><br>
 
-    <h3>OAuth-Provider</h3>
-    
-    <p>
-        Du hast folgende OAuth-Provider registriert: (klicke zum entfernen)
-    </p>
+    <h3>Account löschen</h3>
 
-    {% include "account/snippets/social_manage.html" with next=accounthome %}
+    <p class="mb-3">Möchtest du deinen Account löschen?</p>
 
-    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
+    <a class="btn btn-danger mb-1" href="{% url 'account:delete-account' %}">
+        Account löschen
+    </a>
 
-    {% include "account/snippets/social_login.html" with next=accounthome %}
 
 {% endblock %}
 
 {% block help %}
     <p>Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran vornehmen.</p>
-    <p>Möchtest du deinen Account löschen? Dann kontaktiere mich unter der unten verlinkten E-Mail-Adresse.</p>
 
     <hr>
 

@@ -1,0 +1,36 @@
+{% extends 'account/base.html' %}
+
+{% load static %}
+
+{% block title %}Account löschen{{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>Account löschen</h2>
+    <p>Du brauchst deinen Account nicht mehr? Hier kannst du ihn löschen.</p>
+
+    <p class="alert alert-warning" role="alert">
+        <b>ACHTUNG:</b> Du bist im Begriff, den Account <u>{{ user.username }}</u> zu löschen!
+    </p>
+
+    <p class="alert alert-danger" role="alert">
+        <b>ACHTUNG:</b> Sobald du dieses Formular absendest, wird dein Account sofort deaktiviert und anschliessend
+        <u>unwiderruflich gelöscht</u>. Bitte überlege dir gut, was du tust!
+    </p>
+
+    <p class="alert alert-info" role="alert"><b>Hinweis:</b> Die endgültige Löschung des Accounts erfolgt manuell innerhalb weniger Tage nach der
+        Deaktivierung. Falls du deinen Account versehentlich gelöscht hast, hast du unter Umständen noch die Möglichkeit, diesen zu reaktivieren.
+        Melde dich dazu umgehend bei <a href="mailto:kontakt@rafaelurben.ch">kontakt@rafaelurben.ch</a>.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form }}
+        </div>
+
+        <input type="submit" class="btn btn-danger" value="Account deaktivieren & löschen">
+        <a class="btn btn-secondary" href="{% url 'account:home' %}">Abbrechen</a>
+    </form>
+
+{% endblock %}

@@ -37,8 +37,12 @@ urlpatterns = [
              ),
          name='logout'),
     path('profile',
-         account_entrypoint()(views.profile),
+         views.profile,
          name="profile"),
+
+    path('delete',
+         views.delete_account,
+         name="delete-account"),
 
     path('pwchange',
          account_entrypoint()(auth_views.PasswordChangeView.as_view(

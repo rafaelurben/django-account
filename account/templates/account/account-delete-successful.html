@@ -1,0 +1,22 @@
+{% extends 'account/base.html' %}
+
+{% load static %}
+
+{% block title %}Account deaktiviert{{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>Account deaktiviert</h2>
+    <p>Bye bye!</p>
+
+    <p class="alert alert-success" role="alert">
+        Dein Account wurde erfolgreich deaktiviert und du wurdest ausgeloggt. Dein Account wird in den nächsten Tagen
+        endgültig gelöscht.
+    </p>
+
+    <p class="alert alert-info" role="alert">
+        <b>Versehentlich deaktiviert?</b> Möglicherweise hast du noch eine Chance, deinen Account wiederherzustellen,
+        bevor er endgültig gelöscht wird.
+        Bitte kontaktiere dazu umgehend <a href="mailto:kontakt@rafaelurben.ch">kontakt@rafaelurben.ch</a>!
+    </p>
+
+{% endblock %}
