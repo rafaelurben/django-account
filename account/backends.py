@@ -7,6 +7,7 @@ from requests import HTTPError
 from social_core.exceptions import AuthCanceled
 from social_core.backends import discord, google, github
 
+
 # Note:
 #
 # The following subclasses are required to store the user's correct display name.
@@ -17,11 +18,18 @@ from social_core.backends import discord, google, github
 class DiscordOAuth2(discord.DiscordOAuth2):
     def extra_data(self, user, uid, response, details=None, *args, **kwargs):
         data = super().extra_data(user, uid, response, details, *args, **kwargs)
-        data['display_name'] = f"{response.get('username')}#{response.get('discriminator')}"
+
+        username = response.get('username')
+        discriminator = response.get('discriminator')
+        if discriminator == "0":
+            data['display_name'] = username
+        else:
+            data['display_name'] = f"{response.get('username')}#{response.get('discriminator')}"
 
         if not response.get('verified'):
             raise AuthCanceled(self, "Discord account email is not verified!")
         return data
+
 
 class GoogleOAuth2(google.GoogleOAuth2):
     def extra_data(self, user, uid, response, details=None, *args, **kwargs):
@@ -31,6 +39,7 @@ class GoogleOAuth2(google.GoogleOAuth2):
         if not response.get('email_verified'):
             raise AuthCanceled(self, "Google account email is not verified!")
         return data
+
 
 class GithubOAuth2(github.GithubOAuth2):
     def user_data(self, access_token, *args, **kwargs):

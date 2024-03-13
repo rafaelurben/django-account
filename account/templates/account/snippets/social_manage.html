@@ -2,21 +2,27 @@
 
 <div id="oauth-current">
     {% if backends.associated %}
-        <p>
+        <ul class="list-group my-3">
             {% for account in backends.associated %}
                 {% with "account/logo_"|add:account.provider|add:".svg" as providerimage %}
-                    <div class="d-inline-block mb-1">
-                        <form method="post" action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={{ next }}">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-danger" href="" role="button" type="submit">
-                                <img height="20px" style="margin-bottom:3px; margin-right:5px" src="{% static providerimage %}" />
-                                {% firstof account.extra_data.display_name account.uid %}
-                            </button>
-                        </form>
-                    </div>
+                    <li class="list-group-item border-dark">
+                        <div class="d-flex align-items-center gap-3">
+                            <img width="20px" src="{% static providerimage %}" alt="{{ account.provider }} icon"
+                                 title="{{ account.provider }}"/>
+                            <span>{% firstof account.extra_data.display_name account.uid %}</span>
+                            <form method="post" class="ms-auto"
+                                  action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-danger" role="button" type="submit"
+                                        title="Anmeldemethode entfernen">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
                 {% endwith %}
             {% endfor %}
-        </p>
+        </ul>
     {% else %}
         <p>
             <i>Du hast deinem Account noch keine OAuth-Provider hinzugefügt.</i>
