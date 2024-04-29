@@ -11,6 +11,7 @@ Depends on [social-auth-app-django](https://github.com/python-social-auth/social
   - [x] Google
   - [x] Discord
   - [x] GitHub
+  - [x] Microsoft
 - [x] Login via username and password
 - [x] Password change / reset
 - [x] Logout
@@ -80,6 +81,7 @@ AUTHENTICATION_BACKENDS = (
     'account.backends.GithubOAuth2',
     'account.backends.GoogleOAuth2',
     'account.backends.DiscordOAuth2',
+    'account.backends.MicrosoftOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -105,4 +107,10 @@ SOCIAL_AUTH_DISCORD_KEY = os.getenv("OAUTH_DISCORD_KEY")
 SOCIAL_AUTH_DISCORD_SECRET = os.getenv("OAUTH_DISCORD_SECRET")
 
 SOCIAL_AUTH_DISCORD_SCOPE = ["identify", "email"]
+
+# OAuth Microsoft config
+
+SOCIAL_AUTH_AZUREAD_KEY = _require_env("OAUTH_MICROSOFT_KEY")
+SOCIAL_AUTH_AZUREAD_SECRET = _require_env("OAUTH_MICROSOFT_SECRET")
+
 ```

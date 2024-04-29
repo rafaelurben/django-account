@@ -5,7 +5,7 @@ OAuth2 backend subclasses (from social-core)
 from requests import HTTPError
 
 from social_core.exceptions import AuthCanceled
-from social_core.backends import discord, google, github
+from social_core.backends import discord, google, github, azuread
 
 
 # Note:
@@ -64,6 +64,10 @@ class GithubOAuth2(github.GithubOAuth2):
         data = super().extra_data(user, uid, response, details, *args, **kwargs)
         data['display_name'] = response.get('login')
 
-        if not response.get('email_verified'):
+        if not response.get('email_verified', False):
             raise AuthCanceled(self, "GitHub account email is not verified!")
         return data
+
+
+class MicrosoftOAuth2(azuread.AzureADOAuth2):
+    """Default options already work well, no need to override"""

@@ -4,11 +4,11 @@
     {% if backends.associated %}
         <ul class="list-group my-3">
             {% for account in backends.associated %}
-                {% with "account/logo_"|add:account.provider|add:".svg" as providerimage %}
+                {% with "account/icons/logo_"|add:account.provider|add:".svg" as providerimage %}
                     <li class="list-group-item border-dark">
                         <div class="d-flex align-items-center gap-3">
                             <img width="20px" src="{% static providerimage %}" alt="{{ account.provider }} icon"
-                                 title="{{ account.provider }}"/>
+                                 title="{{ account.provider }} logo"/>
                             <span>{% firstof account.extra_data.display_name account.uid %}</span>
                             <form method="post" class="ms-auto"
                                   action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
