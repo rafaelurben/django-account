@@ -1,2 +1,2 @@
-django==5.0.8
+django==5.1
 social-auth-app-django==5.4.2 
