@@ -1,17 +1,20 @@
 # Django accounts
 
-A simple django app used in <https://app.rafaelurben.ch/account> to manage user accounts. Not meant to be used elsewhere without further modifications.
+A simple django app used in [app.rafaelurben.ch/account](https://app.rafaelurben.ch/account) to manage user accounts. Not meant to be used elsewhere
+without further modifications.
 
-Depends on [social-auth-app-django](https://github.com/python-social-auth/social-app-django).
+Depends on [social-auth-app-django](https://github.com/python-social-auth/social-app-django)
+and [django-passkeys](https://github.com/mkalioby/django-passkeys).
 
 ## Features
 
 - [x] Account overview page
+- [x] Passkey support
 - [x] OAuth2 login and registration via
-  - [x] Google
-  - [x] Discord
-  - [x] GitHub
-  - [x] Microsoft
+    - [x] Google
+    - [x] Discord
+    - [x] GitHub
+    - [x] Microsoft
 - [x] Login via username and password
 - [x] Password change / reset
 - [x] Logout
@@ -20,13 +23,59 @@ Depends on [social-auth-app-django](https://github.com/python-social-auth/social
 
 ### Planned features
 
+- [ ] Delete password
 - [ ] Register via email
 
-## Example settings
+## Example config
 
-settings.py (excerpt)
+### urls.py (excerpt)
 
 ```python
+urlpatterns = [
+    path('account/', include('account.urls')),
+    path('admin/pwreset', lambda r: redirect(reverse('account:password-reset')), name="admin_password_reset"),
+    path('auth/', include('social_django.urls', namespace="social-auth")),
+    path('passkeys/', include('passkeys.urls', namespace="passkeys")),
+    path('.well-known/', include('account.well_known.urls')),
+]
+```
+
+### settings.py (excerpt)
+
+```python
+# Installed apps
+
+INSTALLED_APPS = [
+    ...,
+    'account',
+    'django.contrib.auth',
+    'social_django',
+    'passkeys',
+]
+
+# Authentication backends
+
+AUTHENTICATION_BACKENDS = (
+    'account.backends.GithubOAuth2',
+    'account.backends.GoogleOAuth2',
+    'account.backends.DiscordOAuth2',
+    'account.backends.MicrosoftOAuth2',
+    'passkeys.backend.PasskeyModelBackend',
+)
+
+# Passkeys config
+
+FIDO_SERVER_ID = "your.main.domain"
+FIDO_SERVER_NAME = "Your app name"
+KEY_ATTACHMENT = "cross-platform"
+
+PASSKEY_RELATED_ORIGINS = [
+    "your.alternative.domain",
+    "www.your.alternative.domain",
+]
+
+# Social Auth Config
+
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 SOCIAL_AUTH_LOGIN_ERROR_URL = reverse_lazy('account:home')
 
@@ -75,14 +124,6 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Update the user record with any changed info from the auth service.
     'social_core.pipeline.user.user_details',
-)
-
-AUTHENTICATION_BACKENDS = (
-    'account.backends.GithubOAuth2',
-    'account.backends.GoogleOAuth2',
-    'account.backends.DiscordOAuth2',
-    'account.backends.MicrosoftOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
 )
 
 # OAuth Google config

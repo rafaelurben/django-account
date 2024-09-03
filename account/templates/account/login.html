@@ -31,16 +31,32 @@
 
     <br>
 
-    <h3>Login mit Passwort</h3>
+    <h3>Login mit Passwort oder Passkey</h3>
 
-    <p class="mb-3">Du hast einen Benutzernamen und kennst dein Passwort? Dann kannst du dich hier einloggen.</p>
+    <p class="mb-3">Du hast einen Benutzernamen und kennst dein Passwort oder hast einen Passkey? Dann kannst du dich hier einloggen.</p>
 
-    <form method="post">
+    <form method="post" id="loginForm">
         <input type="hidden" name="next" value="{{ leave }}">
 
         {% include 'account/snippets/form.html' with form=form %}
 
         <input type="submit" class="btn btn-success" value="Einloggen">
+
+        {# Passkeys #}
+        <button class="btn btn-block btn-secondary" type="button" onclick="authn('loginForm')">
+            <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px">
+            Mit Passkey anmelden
+        </button>
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+        {% include 'passkeys.js' %}
+        <script>
+            window.addEventListener("load", () => {
+                checkConditionalUI('loginForm');
+            })
+        </script>
     </form>
 
     <br>

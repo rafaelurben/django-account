@@ -1,5 +1,6 @@
-from django.urls import path, re_path
-from django.contrib.auth import views as auth_views
+from account.forms import LoginForm
+from django.urls import path, re_path, include
+from django.contrib.auth import views as auth_views, authenticate
 from django.urls import reverse, reverse_lazy
 
 from . import views
@@ -29,6 +30,7 @@ urlpatterns = [
          account_entrypoint()(auth_views.LoginView.as_view(
              template_name='account/login.html',
              redirect_authenticated_user=True,
+             form_class = LoginForm,
              )),
          name="login"),
     path('logout',

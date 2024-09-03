@@ -10,4 +10,7 @@ urlpatterns = [
     path('change-password',
          views.change_password),
 
+    path('webauthn',
+         views.webauthn),
+
 ]

@@ -28,29 +28,22 @@
         <label for="email">E-Mail</label>
         <input id="email" name="email" type="email" disabled class="form-control disabled" value="{{ user.email }}" placeholder="- (nicht festgelegt)">
     </div>
-    
     <div class="mb-2">
         <label for="username">Benutzername</label>
         <input id="username" name="username" type="text" disabled class="form-control disabled" value="{{ user.username }}" placeholder="- (nicht festgelegt)">
     </div>
-    
     <div class="mb-2">
         <label for="first_name">Vorname</label>
         <input id="first_name" name="first_name" type="text" disabled class="form-control disabled" value="{{ user.first_name }}" placeholder="- (nicht festgelegt)">
     </div>
-
-    <div class="mb-1">
+    <div class="mb-3">
         <label for="last_name">Nachname</label>
         <input id="last_name" name="last_name" type="text" disabled class="form-control disabled" value="{{ user.last_name }}" placeholder="- (nicht festgelegt)">
     </div>
 
-    <br>
-
-    <a class="btn btn-secondary mb-1" href="{% url 'account:profile' %}">
+    <a class="btn btn-secondary mb-3" href="{% url 'account:profile' %}">
         Profil bearbeiten
     </a>
-
-    <br><br>
 
     <h3>OAuth-Provider</h3>
 
@@ -66,25 +59,32 @@
 
     <br>
 
+    <h3>Passkeys</h3>
+
+    <p>Verwalte deine Passkeys:</p>
+
+    <a class="btn btn-secondary mb-3" href="{% url 'passkeys:home' %}">
+        <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px" class="me-1" >
+        Passkeys verwalten
+    </a>
+
     <h3>Passwort</h3>
 
     <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern.</p>
 
     {% if user.has_usable_password %}
-        <a class="btn btn-secondary mb-1" href="{% url 'account:password-reset' %}">
+        <a class="btn btn-secondary mb-3" href="{% url 'account:password-reset' %}">
             Passwort zurücksetzen
         </a>
 
-        <a class="btn btn-secondary mb-1" href="{% url 'account:password-change' %}">
+        <a class="btn btn-secondary mb-3" href="{% url 'account:password-change' %}">
             Passwort ändern
         </a>
     {% else %}
-        <a class="btn btn-secondary mb-1" href="{% url 'account:password-reset' %}">
+        <a class="btn btn-secondary mb-3" href="{% url 'account:password-reset' %}">
             Passwort setzen
         </a>
     {% endif %}
-
-    <br><br>
 
     <h3>Account löschen</h3>
 
