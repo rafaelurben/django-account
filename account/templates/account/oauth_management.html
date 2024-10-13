@@ -1,0 +1,38 @@
+{% extends 'account/base.html' %}
+
+{% block title %}OAuth-Provider{{ block.super }}{% endblock %}
+
+{% block content %}
+    {% url 'account:home' as homeurl %}
+
+    <h2>OAuth-Provider verwalten</h2>
+
+    <p>Du hast folgende OAuth-Provider registriert:</p>
+
+    {% include "account/snippets/social_manage.html" with next=homeurl %}
+
+    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
+
+    {% include "account/snippets/social_login.html" with next=homeurl %}
+
+    <a class="btn btn-secondary mt-3" href="{{ homeurl }}">Zurück</a>
+
+{% endblock %}
+
+{% block help %}
+    <p>
+        Auf dieser Seite kannst du deine OAuth-Provider verwalten.
+    </p>
+    <p>
+        Ein <b>OAuth-Provider</b> ist ein Drittanbieter, welcher dich authentifiziert, damit du
+        dich auf dieser Seite schneller und ohne Passwort einloggen kannst.
+    </p>
+    <p>
+        Die Sicherheit einer Anmeldung mit einem solchen Provider ist abhängig davon, wie gut
+        du dein Konto beim entsprechenden Provider geschützt hast.
+    </p>
+
+    <hr>
+
+    {{ block.super }}
+{% endblock %}

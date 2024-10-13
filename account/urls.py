@@ -41,6 +41,12 @@ urlpatterns = [
     path('profile',
          views.profile,
          name="profile"),
+    path('oauth-management',
+         views.oauth_management,
+         name="oauth-management"),
+    path('passkey-management',
+         views.passkey_management,
+         name="passkey-management"),
 
     path('delete',
          views.delete_account,

@@ -24,7 +24,19 @@ def leave(request):
 
 
 @account_entrypoint()
-@login_required(login_url=reverse_lazy('account:home'))
+@login_required(login_url=reverse_lazy('account:login'))
+def oauth_management(request):
+    return render(request, 'account/oauth_management.html')
+
+
+@account_entrypoint()
+@login_required(login_url=reverse_lazy('account:login'))
+def passkey_management(request):
+    return redirect(reverse('passkeys:home'))
+
+
+@account_entrypoint()
+@login_required(login_url=reverse_lazy('account:login'))
 def profile(request):
     if request.method == "POST":
         form = ProfileForm(request.POST, instance=request.user)
@@ -40,7 +52,7 @@ def profile(request):
 
 
 @account_entrypoint()
-@login_required(login_url=reverse_lazy('account:home'))
+@login_required(login_url=reverse_lazy('account:login'))
 def delete_account(request):
     if request.method == "POST":
         form = DeleteForm(request.POST)

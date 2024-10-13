@@ -1,6 +1,6 @@
 {% extends 'account/base.html' %}
 
-{% load static %}
+{% load static account_tags %}
 
 {% block title %}Startseite{% endblock %}
 
@@ -10,7 +10,8 @@
     <h2>Dein Account</h2>
 
     <p>
-        Hallo {{ user.first_name | default:user.username }}! Du befindest dich hier auf der Startseite der Accountverwaltung deines Accounts für Rafaels Webapps.
+        Hallo {{ user.first_name | default:user.username }}! Du befindest dich hier auf der Startseite der
+        Accountverwaltung deines Accounts für Rafaels Webapps.
     </p>
 
     <p>
@@ -26,51 +27,50 @@
 
     <div class="mb-2">
         <label for="email">E-Mail</label>
-        <input id="email" name="email" type="email" disabled class="form-control disabled" value="{{ user.email }}" placeholder="- (nicht festgelegt)">
+        <input id="email" name="email" type="email" disabled class="form-control disabled" value="{{ user.email }}"
+               placeholder="- (nicht festgelegt)">
     </div>
     <div class="mb-2">
         <label for="username">Benutzername</label>
-        <input id="username" name="username" type="text" disabled class="form-control disabled" value="{{ user.username }}" placeholder="- (nicht festgelegt)">
+        <input id="username" name="username" type="text" disabled class="form-control disabled"
+               value="{{ user.username }}" placeholder="- (nicht festgelegt)">
     </div>
     <div class="mb-2">
         <label for="first_name">Vorname</label>
-        <input id="first_name" name="first_name" type="text" disabled class="form-control disabled" value="{{ user.first_name }}" placeholder="- (nicht festgelegt)">
+        <input id="first_name" name="first_name" type="text" disabled class="form-control disabled"
+               value="{{ user.first_name }}" placeholder="- (nicht festgelegt)">
     </div>
     <div class="mb-3">
         <label for="last_name">Nachname</label>
-        <input id="last_name" name="last_name" type="text" disabled class="form-control disabled" value="{{ user.last_name }}" placeholder="- (nicht festgelegt)">
+        <input id="last_name" name="last_name" type="text" disabled class="form-control disabled"
+               value="{{ user.last_name }}" placeholder="- (nicht festgelegt)">
     </div>
 
     <a class="btn btn-secondary mb-3" href="{% url 'account:profile' %}">
         Profil bearbeiten
     </a>
 
-    <h3>OAuth-Provider</h3>
+    <h3>Anmeldemethoden</h3>
 
-    <p>
-        Du hast folgende OAuth-Provider registriert:
-    </p>
+    <p class="mb-3">Hier kannst du deine Passkeys und Drittanbieter-Logins (OAuth-Provider) verwalten:</p>
 
-    {% include "account/snippets/social_manage.html" with next=accounthome %}
-
-    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
-
-    {% include "account/snippets/social_login.html" with next=accounthome %}
-
-    <br>
-
-    <h3>Passkeys</h3>
-
-    <p>Verwalte deine Passkeys:</p>
-
-    <a class="btn btn-secondary mb-3" href="{% url 'passkeys:home' %}">
-        <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px" class="me-1" >
+    <a class="btn btn-secondary mb-3" href="{% url 'account:passkey-management' %}" role="link">
+        <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px" class="me-1"
+             alt="Passkey icon">
         Passkeys verwalten
     </a>
 
-    <h3>Passwort</h3>
+    <a class="btn btn-secondary mb-3 d-inline-flex align-items-center gap-1" href="{% url 'account:oauth-management' %}" role="link">
+        Drittanbieter-Logins verwalten
+        ({% for backend in backends.backends %}
+            {% backend_display_config backend as display_config %}
+            <img alt="Logo von {{ display_config.title }}" title="{{ display_config.title }}"
+                 src="{% static display_config.icon %}"
+                 style="height: 20px; width: 20px; object-fit: contain;"/>
+        {% endfor %})
+    </a>
 
-    <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern.</p>
+    <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern:</p>
 
     {% if user.has_usable_password %}
         <a class="btn btn-secondary mb-3" href="{% url 'account:password-reset' %}">
