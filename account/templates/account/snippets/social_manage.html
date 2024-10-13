@@ -1,31 +1,31 @@
-{% load static %}
+{% load static account_tags %}
 
 <div id="oauth-current">
-    {% if backends.associated %}
-        <ul class="list-group my-3">
-            {% for account in backends.associated %}
-                {% with "account/icons/logo_"|add:account.provider|add:".svg" as providerimage %}
-                    <li class="list-group-item border-dark">
-                        <div class="d-flex align-items-center gap-3">
-                            <img width="20px" src="{% static providerimage %}" alt="{{ account.provider }} icon"
-                                 title="{{ account.provider }} logo"/>
-                            <span>{% firstof account.extra_data.display_name account.uid %}</span>
-                            <form method="post" class="ms-auto"
-                                  action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
-                                {% csrf_token %}
-                                <button class="btn btn-outline-danger" role="button" type="submit"
-                                        title="Anmeldemethode entfernen">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </li>
-                {% endwith %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>
-            <i>Du hast deinem Account noch keine OAuth-Provider hinzugefügt.</i>
-        </p>
-    {% endif %}
+    <ul class="list-group my-3">
+        {% for account in backends.associated %}
+            {% backend_display_config account.provider as display_config %}
+
+            <li class="list-group-item border-dark">
+                <div class="d-flex align-items-center gap-3">
+                    <img width="20px" src="{% static display_config.icon %}"
+                         alt="Logo von {{ display_config.title }}"/>
+                    <span>
+                        <b>{{ display_config.title }}</b>: {% firstof account.extra_data.display_name account.uid %}
+                    </span>
+                    <form method="post" class="ms-auto"
+                          action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger" role="button" type="submit"
+                                title="Anmeldemethode entfernen">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item border-dark">
+                Du hast deinem Account noch keine OAuth-Provider hinzugefügt.
+            </li>
+        {% endfor %}
+    </ul>
 </div>

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static account_tags %}
 
 <div id="social-logins" class="account-social-logins">
     <style>
@@ -27,28 +27,14 @@
             object-fit: contain;
         }
     </style>
-    <div>
-        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'google-oauth2' %}?next={{ next }}" role="button">
-            <img alt="Google logo" src="{% static 'account/icons/logo_google-oauth2.svg' %}" />
-            <span>Mit Google anmelden</span>
-        </a>
-    </div>
-    <div>
-        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'github' %}?next={{ next }}" role="button">
-            <img alt="GitHub logo" src="{% static 'account/icons/logo_github.svg' %}" />
-            <span>Mit GitHub anmelden</span>
-        </a>
-    </div>
-    <div>
-        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'discord' %}?next={{ next }}" role="button">
-            <img alt="Discord logo" src="{% static 'account/icons/logo_discord.svg' %}" />
-            <span>Mit Discord anmelden</span>
-        </a>
-    </div>
-    <div>
-        <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' 'azuread-oauth2' %}?next={{ next }}" role="button">
-            <img alt="Microsoft logo" src="{% static 'account/icons/logo_azuread-oauth2.svg' %}" />
-            <span>Mit Microsoft anmelden</span>
-        </a>
-    </div>
+
+    {% for backend in backends.backends %}
+        {% backend_display_config backend as display_config %}
+    	<div>
+            <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' backend %}?next={{ next }}" role="button">
+                <img alt="Logo von {{ display_config.title }}" src="{% static display_config.icon %}" />
+                <span>Mit {{ display_config.title }} anmelden</span>
+            </a>
+        </div>
+    {% endfor %}
 </div>
