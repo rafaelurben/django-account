@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.core.mail import mail_admins
 
 from .forms import ProfileForm, DeleteForm
-from .utils import pop_session_next, account_entrypoint
+from .utils import pop_session_next, account_entrypoint, get_avatar_url
 
 
 # Create your views here.
@@ -15,7 +15,9 @@ from .utils import pop_session_next, account_entrypoint
 def home(request):
     if not request.user.is_authenticated:
         return redirect(reverse("account:login"))
-    return render(request, 'account/home.html')
+    return render(request, 'account/home.html', {
+        'avatar_url': get_avatar_url(request.user.email)
+    })
 
 
 def leave(request):

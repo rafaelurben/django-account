@@ -21,79 +21,86 @@
         </a>
     </p>
 
-    <h3>Deine Infos</h3>
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <a href="https://gravatar.com/" title="Profilbild auf Gravatar bearbeiten" target="_blank">
+                        <img src="{{ avatar_url }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                    </a>
+                    <h4 class="my-3">{{ user.first_name }} {{ user.last_name }}</h4>
+                    <p class="text-muted mb-1">@{{ user.username }}</p>
+                    <p class="text-muted mb-4">{{ user.email }}</p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary" href="{% url 'account:profile' %}">
+                            Profil bearbeiten
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Anmeldemethoden</h3>
 
-    <p class="mb-3">Folgende Infos werden bei Apps mit diesem Login verwendet:</p>
+                    <p class="mb-3">Hier kannst du deine Anmeldemethoden verwalten.</p>
 
-    <div class="mb-2">
-        <label for="email">E-Mail</label>
-        <input id="email" name="email" type="email" disabled class="form-control disabled" value="{{ user.email }}"
-               placeholder="- (nicht festgelegt)">
+                    <p>Passkeys sind der neuste Login-Standard und bringen den höchsten Komfort:</p>
+
+                    <a class="mb-3 btn btn-secondary" href="{% url 'account:passkey-management' %}" role="link">
+                        <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
+                             class="me-1"
+                             alt="Passkey icon">
+                        Passkeys verwalten
+                    </a>
+
+                    <p>Folgende <abbr title="OAuth-Provider">Anbieter</abbr> können mit dem Account verknüpft werden:
+                        {% for backend in backends.backends %}
+                            {% backend_display_config backend as display_config %}
+                            <img alt="Logo von {{ display_config.title }}" title="{{ display_config.title }}"
+                                 src="{% static display_config.icon %}"
+                                 style="height: 20px; width: 20px; object-fit: contain;"/>
+                        {% endfor %}
+                    </p>
+
+                    <a class="mb-3 btn btn-secondary d-inline-flex align-items-center gap-1"
+                       href="{% url 'account:oauth-management' %}"
+                       role="link">
+                        Drittanbieter-Logins verwalten
+                    </a>
+
+                    <p>Hier kannst du dein Passwort setzen, zurücksetzen oder ändern:</p>
+
+                    {% if user.has_usable_password %}
+                        <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
+                            Passwort zurücksetzen
+                        </a>
+
+                        <a class="btn btn-secondary" href="{% url 'account:password-change' %}">
+                            Passwort ändern
+                        </a>
+                    {% else %}
+                        <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
+                            Passwort setzen
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Account löschen</h3>
+
+                    <p class="mb-3">Möchtest du deinen Account löschen?</p>
+
+                    <a class="btn btn-danger mb-1" href="{% url 'account:delete-account' %}">
+                        Account löschen
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-2">
-        <label for="username">Benutzername</label>
-        <input id="username" name="username" type="text" disabled class="form-control disabled"
-               value="{{ user.username }}" placeholder="- (nicht festgelegt)">
-    </div>
-    <div class="mb-2">
-        <label for="first_name">Vorname</label>
-        <input id="first_name" name="first_name" type="text" disabled class="form-control disabled"
-               value="{{ user.first_name }}" placeholder="- (nicht festgelegt)">
-    </div>
-    <div class="mb-3">
-        <label for="last_name">Nachname</label>
-        <input id="last_name" name="last_name" type="text" disabled class="form-control disabled"
-               value="{{ user.last_name }}" placeholder="- (nicht festgelegt)">
-    </div>
-
-    <a class="btn btn-secondary mb-3" href="{% url 'account:profile' %}">
-        Profil bearbeiten
-    </a>
-
-    <h3>Anmeldemethoden</h3>
-
-    <p class="mb-3">Hier kannst du deine Passkeys und Drittanbieter-Logins (OAuth-Provider) verwalten:</p>
-
-    <a class="btn btn-secondary mb-3" href="{% url 'account:passkey-management' %}" role="link">
-        <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px" class="me-1"
-             alt="Passkey icon">
-        Passkeys verwalten
-    </a>
-
-    <a class="btn btn-secondary mb-3 d-inline-flex align-items-center gap-1" href="{% url 'account:oauth-management' %}" role="link">
-        Drittanbieter-Logins verwalten
-        ({% for backend in backends.backends %}
-            {% backend_display_config backend as display_config %}
-            <img alt="Logo von {{ display_config.title }}" title="{{ display_config.title }}"
-                 src="{% static display_config.icon %}"
-                 style="height: 20px; width: 20px; object-fit: contain;"/>
-        {% endfor %})
-    </a>
-
-    <p class="mb-3">Hier kannst du dein Passwort setzen, zurücksetzen oder ändern:</p>
-
-    {% if user.has_usable_password %}
-        <a class="btn btn-secondary mb-3" href="{% url 'account:password-reset' %}">
-            Passwort zurücksetzen
-        </a>
-
-        <a class="btn btn-secondary mb-3" href="{% url 'account:password-change' %}">
-            Passwort ändern
-        </a>
-    {% else %}
-        <a class="btn btn-secondary mb-3" href="{% url 'account:password-reset' %}">
-            Passwort setzen
-        </a>
-    {% endif %}
-
-    <h3>Account löschen</h3>
-
-    <p class="mb-3">Möchtest du deinen Account löschen?</p>
-
-    <a class="btn btn-danger mb-1" href="{% url 'account:delete-account' %}">
-        Account löschen
-    </a>
-
 
 {% endblock %}
 
