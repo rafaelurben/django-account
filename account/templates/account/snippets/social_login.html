@@ -1,6 +1,6 @@
 {% load static account_tags %}
 
-<div id="social-logins" class="account-social-logins">
+<div id="social-logins" class="account-social-logins {% if column %}flex-column{% endif %}">
     <style>
         .account-social-logins {
             display: flex;

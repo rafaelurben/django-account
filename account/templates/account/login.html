@@ -9,9 +9,9 @@
 
     <h2>Login</h2>
 
-    <div class="alert alert-warning mt-3" role="alert">
-        Hinweis: Erstellen eines neuen Accounts ist zurzeit nur via OAuth-Provider (Google, Discord &amp; GitHub) möglich.
-    </div>
+    <p>
+        Hier kannst du dich mit deinem Account für Rafaels Webapps einloggen.
+    </p>
 
     <p>
         <a class="btn btn-outline-success" href="{{ leave }}">
@@ -20,60 +20,77 @@
         </a>
     </p>
 
-    <h3>Weiter via OAuth</h3>
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Login mit Passwort oder Passkey</h3>
+                    <p>
+                        Mit Benutzername & Passwort oder mit
+                        <abbr title="Passkeys sind eine neue und sichere Authentifizierungsmethode, welche nicht durch Phishing abgefangen werden können.">Passkey</abbr>
+                        einloggen:
+                    </p>
 
-    <p>
-        Unabhängig davon, ob du bereits einen Account besitzt oder nicht, kannst du dich 
-        mit folgenden Methoden einloggen.
-    </p>
+                    <form method="post" id="loginForm">
+                        <input type="hidden" name="next" value="{{ leave }}">
 
-    {% include "account/snippets/social_login.html" with next=leave %}
+                        {% include 'account/snippets/form.html' with form=form %}
 
-    <br>
+                        <input type="submit" class="btn btn-primary" value="Einloggen">
 
-    <h3>Login mit Passwort oder Passkey</h3>
+                        {# Passkeys #}
+                        <button class="btn btn-block btn-secondary" type="button" onclick="authn('loginForm')">
+                            <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
+                                 alt="Passkey Icon">
+                            Mit Passkey anmelden
+                        </button>
+                        <script
+                                src="https://code.jquery.com/jquery-3.7.1.min.js"
+                                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                                crossorigin="anonymous"></script>
+                        {% include 'passkeys.js' %}
+                        <script>
+                            window.addEventListener("load", () => {
+                                checkConditionalUI('loginForm');
+                            })
+                        </script>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Weiter via OAuth</h3>
+                    <p>Mit einem Drittanbieter einloggen:</p>
 
-    <p class="mb-3">Du hast einen Benutzernamen und kennst dein Passwort oder hast einen Passkey? Dann kannst du dich hier einloggen.</p>
+                    {% include "account/snippets/social_login.html" with next=leave column=True %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Passwort oder Benutzername vergessen?</h3>
+                    <p>Hier kannst du dein Passwort (zurück-)setzen. Dabei erhältst du auch deinen Benutzernamen
+                        zugesendet.</p>
 
-    <form method="post" id="loginForm">
-        <input type="hidden" name="next" value="{{ leave }}">
-
-        {% include 'account/snippets/form.html' with form=form %}
-
-        <input type="submit" class="btn btn-success" value="Einloggen">
-
-        {# Passkeys #}
-        <button class="btn btn-block btn-secondary" type="button" onclick="authn('loginForm')">
-            <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px">
-            Mit Passkey anmelden
-        </button>
-        <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"></script>
-        {% include 'passkeys.js' %}
-        <script>
-            window.addEventListener("load", () => {
-                checkConditionalUI('loginForm');
-            })
-        </script>
-    </form>
-
-    <br>
-
-    <h3>Passwort vergessen?</h3>
-
-    <p class="mb-3">
-        Hast du dein Passwort vergessen? Hier kannst du es zurücksetzen oder dein erstes Passwort setzen, 
-        falls du bisher noch keines verwendet hast. 
-        <br>
-        PROTIP: Dabei erhältst du auch deinen Benutzernamen zugeschickt.
-    </p>
-
-    <p>
-        <a class="btn btn-warning" href="{% url 'account:password-reset' %}">
-            Passwort (zurück-)setzen
-        </a>
-    </p>
-
+                    <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
+                        Passwort (zurück-)setzen
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Registrieren</h3>
+                    <p class="mb-0">
+                        Das Erstellen eines neuen Accounts ist zurzeit nur via OAuth-Provider möglich. Beim Einloggen
+                        mit einem der Anbieter oben wird automatisch ein Account für dich erstellt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
