@@ -4,8 +4,13 @@
     {{ block.super }}
 
     <style>
-        /* Fallback because there's no bootstrap available on admin pages */
-        .btn {
+        .more-signin-methods-container {
+            margin: 1.3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .more-signin-methods-button {
             font-weight: 400;
             line-height: 1.5;
             text-align: center;
@@ -16,25 +21,25 @@
             -webkit-appearance: none !important;
             -moz-appearance: none !important;
             appearance: none !important;
-            border: 1px solid transparent;
+            border: 1px solid black;
             padding: .375rem .75rem;
             font-size: 1rem;
             border-radius: .25rem;
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
-        .flex-column {
-            flex-direction: column;
-        }
-        /* Additional styles */
-        .account-social-logins > div > a {
+            color: black !important;
             background-color: white;
-            color: black;
-            border-color: black !important;
+            text-decoration: none !important;
+        }
+
+        .more-signin-methods-button:hover {
+            background-color: #d3d4d5;
         }
     </style>
     <hr>
-    <div style="margin: 1.3rem;">
-        {% include "account/snippets/social_login.html" with next=next column=True %}
+    <div class="more-signin-methods-container" style="margin: 1.3rem;">
+        <a href="{% url 'account:login' %}?next={{ next }}" class="more-signin-methods-button">
+            Weitere Anmeldemethoden
+        </a>
     </div>
 
 {% endblock %}

@@ -1,0 +1,6 @@
+{% extends "admin/index.html" %}
+
+{% block userlinks %}
+    <a href="{% url 'account:home' %}?next={{ request.path }}">Account verwalten</a> /
+    {{ block.super }}
+{% endblock %}
