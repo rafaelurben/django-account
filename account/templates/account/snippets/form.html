@@ -14,13 +14,13 @@
     <div class="mb-3">
         <div class="form-floating">
             {% if field.errors %}
-                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control is-invalid" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" aria-describedby="{{ field.name }}__errors">
+                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control is-invalid" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" aria-describedby="{{ field.name }}__errors" placeholder="">
             {% elif not form.non_field_errors and form.is_bound %}
-                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control is-valid" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" >
+                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control is-valid" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" placeholder="">
             {% else %}
-                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" >
+                <input name="{{ field.name }}" {% for name, value in field.field.widget.attrs.items %}{{name}}="{{value}}" {% endfor %} type="{{ field.widget_type }}" class="form-control" id="{{ field.id_for_label }}" value="{{ field.value | default:''}}" placeholder="">
             {% endif %}
-            <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
 
             {% if field.help_text %}
                 <div class="form-text">{{ field.help_text }}</div>
