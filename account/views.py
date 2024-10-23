@@ -68,7 +68,7 @@ def delete_account(request):
             body = get_template("account/account-delete-email.html").render({
                 "user": user,
                 "user_admin_url": request.build_absolute_uri(
-                    reverse("admin:auth_user_delete", args=(user.id,)))
+                    reverse("admin:account_user_delete", args=(user.id,)))
             })
 
             mail_admins(subject, body)
