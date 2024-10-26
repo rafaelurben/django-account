@@ -18,7 +18,10 @@ def home(request):
     if not request.user.is_authenticated:
         return redirect(reverse("account:login"))
     return render(request, 'account/home.html', {
-        'avatar_url': get_avatar_url(request.user.email)
+        'avatar_url': get_avatar_url(request.user.email),
+        'has_usable_password': request.user.has_usable_password(),
+        'has_usable_passkey': request.user.userpasskey_set.filter(enabled=True).count() > 0,
+        'has_usable_oauth': request.user.social_auth.count() > 0
     })
 
 

@@ -52,8 +52,15 @@
 
                     <p class="mb-3">{% translate 'You can manage your login methods here.' %}</p>
 
-                    <p>Passkeys sind der neuste Login-Standard und bringen den höchsten Komfort:</p>
-
+                    <h5>
+                        {% if has_usable_passkey %}
+                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                        {% else %}
+                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                        {% endif %}
+                        {% translate 'Passkey' %}
+                    </h5>
+                    <p>{% translate 'The newest and most secure option.' context 'Passkey description' %}</p>
                     <a class="mb-3 btn btn-secondary" href="{% url 'account:passkey-management' %}" role="link">
                         <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
                              class="me-1"
@@ -61,7 +68,15 @@
                         {% translate 'Manage passkeys' %}
                     </a>
 
-                    <p>Folgende <abbr title="OAuth-Provider">Anbieter</abbr> können mit dem Account verknüpft werden:
+                    <h5>
+                        {% if has_usable_oauth %}
+                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                        {% else %}
+                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                        {% endif %}
+                        {% translate 'OAuth providers' %}
+                    </h5>
+                    <p>{% translate 'Supported providers:' context 'OAuth description' %}
                         {% for backend in backends.backends %}
                             {% backend_display_config backend as display_config %}
                             <img alt="Logo von {{ display_config.title }}" title="{{ display_config.title }}"
@@ -69,15 +84,21 @@
                                  style="height: 20px; width: 20px; object-fit: contain;"/>
                         {% endfor %}
                     </p>
-
                     <a class="mb-3 btn btn-secondary d-inline-flex align-items-center gap-1"
                        href="{% url 'account:oauth-management' %}"
                        role="link">
                         {% translate 'Manage OAuth providers' %}
                     </a>
 
-                    <p>Hier kannst du dein Passwort setzen, zurücksetzen oder ändern:</p>
-
+                    <h5>
+                        {% if has_usable_password %}
+                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                        {% else %}
+                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                        {% endif %}
+                        {% translate 'Password' %}
+                    </h5>
+                    <p>{% translate 'The oldest but simplest option.' context 'Password description' %}</p>
                     {% if user.has_usable_password %}
                         <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
                             {% translate 'Reset password' %}
