@@ -66,7 +66,7 @@ urlpatterns = [
          account_entrypoint()(auth_views.PasswordResetView.as_view(
              template_name="account/password-reset-form.html",
              email_template_name="account/password-reset-email.html",
-             subject_template_name="account/password-reset-subject.txt",
+             subject_template_name="account/password-reset-subject.html",
              success_url=reverse_lazy("account:password-reset-done"))),
          name="password-reset"),
     path('pwreset/done',

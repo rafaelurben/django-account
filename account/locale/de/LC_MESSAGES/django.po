@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 12:32+0200\n"
+"POT-Creation-Date: 2024-10-26 13:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,14 +118,28 @@ msgid "Manage OAuth providers"
 msgstr "OAuth-Provider verwalten"
 
 #: .\account\templates\account\home.html:83
+#: .\account\templates\account\login.html:78
+#: .\account\templates\account\password-reset-done.html:5
+#: .\account\templates\account\password-reset-done.html:9
+#: .\account\templates\account\password-reset-form.html:5
+#: .\account\templates\account\password-reset-form.html:10
+#: .\account\templates\account\password-reset-form.html:22
+#: .\account\templates\account\password-reset-subject.html:1
 msgid "Reset password"
 msgstr "Passwort zurücksetzen"
 
 #: .\account\templates\account\home.html:87
+#: .\account\templates\account\password-change.html:5
+#: .\account\templates\account\password-change.html:8
+#: .\account\templates\account\password-change.html:14
 msgid "Change password"
 msgstr "Passwort ändern"
 
 #: .\account\templates\account\home.html:91
+#: .\account\templates\account\password-reset-confirm.html:5
+#: .\account\templates\account\password-reset-confirm.html:9
+#: .\account\templates\account\password-reset-confirm.html:21
+#: .\account\templates\account\password-reset-form.html:16
 msgid "Set password"
 msgstr "Passwort setzen"
 
@@ -187,15 +201,10 @@ msgid "Forgot password or username?"
 msgstr "Passwort oder Benutzername vergessen?"
 
 #: .\account\templates\account\login.html:75
-msgid ""
-"Here you can (re)set your password. You will also be sent your user name."
+msgid "Here you can reset your password. You will also be sent your user name."
 msgstr ""
 "Hier kannst du dein Passwort (zurück-)setzen. Dabei erhältst du auch deinen "
 "Benutzernamen zugesendet."
-
-#: .\account\templates\account\login.html:78
-msgid "(Re)set password"
-msgstr "Passwort (zurück-)setzen"
 
 #: .\account\templates\account\login.html:86
 msgid "Register"
@@ -233,6 +242,7 @@ msgstr "Hier kannst du deine registrierten OAuth-Provider verwalten."
 
 #: .\account\templates\account\oauth_management.html:16
 #: .\account\templates\account\passkeys\passkeys_base.html:21
+#: .\account\templates\account\password-change-done.html:14
 #: .\account\templates\account\profile.html:16
 msgid "Back"
 msgstr "Zurück"
@@ -253,6 +263,129 @@ msgstr "Passkeys"
 #: .\account\templates\account\passkeys\passkeys_base.html:16
 msgid "You can manage your saved passkeys here."
 msgstr "Hier kannst du deine gespeicherten Passkeys verwalten."
+
+#: .\account\templates\account\password-change-done.html:5
+#: .\account\templates\account\password-change-done.html:8
+#: .\account\templates\account\password-reset-complete.html:5
+#: .\account\templates\account\password-reset-complete.html:8
+msgid "Password changed"
+msgstr "Passwort geändert"
+
+#: .\account\templates\account\password-change-done.html:9
+#: .\account\templates\account\password-reset-complete.html:9
+msgid "Your password was successfully changed!"
+msgstr "Dein Passwort wurde erfolgreich geändert!"
+
+#: .\account\templates\account\password-change.html:9
+msgid "Want to change your password? No problem! Here is the right place."
+msgstr ""
+"Du möchtest dein Passwort ändern? Kein Problem! Hier ist der richtige Platz "
+"dazu."
+
+#: .\account\templates\account\password-change.html:15
+#: .\account\templates\account\password-reset-form.html:36
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: .\account\templates\account\password-reset-complete.html:12
+msgid "Go to login page"
+msgstr "Zur Login-Seite"
+
+#: .\account\templates\account\password-reset-confirm.html:14
+msgid ""
+"You have successfully confirmed your e-mail address and can now set a new "
+"password."
+msgstr ""
+"Du hast deine E-Mail-Adresse erfolgreich bestätigt und kannst nun ein neues "
+"Passwort festlegen."
+
+#: .\account\templates\account\password-reset-confirm.html:25
+msgid "Sorry, this link is invalid! Please request a new link:"
+msgstr "Dieser Link ist leider ungültig! Bitte fordere einen neuen Link an:"
+
+#: .\account\templates\account\password-reset-confirm.html:26
+msgid "Click here"
+msgstr "Hier klicken"
+
+#: .\account\templates\account\password-reset-done.html:12
+msgid ""
+"A request to reset your password has been submitted. You should now receive "
+"an e-mail with a confirmation link. Please follow the link for further "
+"instructions."
+msgstr ""
+"Eine Anfrage um das Passwort zurückzusetzen wurde eingereicht. Du solltest "
+"nun eine E-Mail mit einem Bestätigungslink erhalten. Bitte folge dem Link "
+"für weitere Anweisungen."
+
+#: .\account\templates\account\password-reset-email.html:1
+#, python-format
+msgctxt "Password reset email"
+msgid ""
+"Hi %(user.first_name)s!\n"
+"\n"
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(domain)s.\n"
+"\n"
+"Please go to the following page and choose a new password:\n"
+msgstr ""
+"Hallo %(user.first_name)s!\n"
+"\n"
+"Du erhälts diese E-Mail, weil jemand eine Zurücksetzung des Passworts für "
+"deinen Account auf %(domain)s angefordert hat.\n"
+"\n"
+"Folge folgendem Link um ein neues Passwort zu wählen:\n"
+
+#: .\account\templates\account\password-reset-email.html:9
+#, python-format
+msgctxt "Password reset email"
+msgid ""
+"Your username, in case you've forgotten: %(user.username)s\n"
+"\n"
+"If you DID NOT REQUEST a password reset, you can safely ignore this e-mail.\n"
+"\n"
+"Thanks for using %(domain)s!"
+msgstr ""
+"Dein Benutzername, falls du ihn vergessen hast: %(user.username)s\n"
+"\n"
+"Falls du diese Änderung NICHT ANGEFORDERT hast, kannst du diese E-Mail "
+"ignorieren.\n"
+"\n"
+"Danke, dass du %(domain)s verwendest!"
+
+#: .\account\templates\account\password-reset-form.html:11
+msgid ""
+"Have you forgotten your password? You can reset your password here. You will "
+"then receive an email with further information."
+msgstr ""
+"Du hast dein Passwort vergessen? Hier kannst du dein Passwort "
+"zurückzusetzen. Anschliessend erhältst du eine E-Mail mit weiteren "
+"Informationen."
+
+#: .\account\templates\account\password-reset-form.html:17
+msgid ""
+"You have not yet set a password. You can request a password here. You will "
+"then receive an e-mail with further information."
+msgstr ""
+"Du hast bisher noch kein Passwort festgelegt. Hier kannst du ein Password "
+"anfordern. Anschliessend erhältst du eine E-Mail mit weiteren Informationen."
+
+#: .\account\templates\account\password-reset-form.html:23
+msgid ""
+"Forgot your password or haven't set one yet? Enter your e-mail address below "
+"to reset your reset your password. You will then receive an e-mail with "
+"further information."
+msgstr ""
+"Du hast dein Passwort vergessen oder hast noch keines gesetzt? Gib deine E-"
+"Mail-Adresse unten ein um dein Passwort zurückzusetzen. Anschliessend "
+"erhältst du eine E-Mail mit weiteren Informationen."
+
+#: .\account\templates\account\password-reset-form.html:27
+msgid "Pro tip: You will also be sent your user name."
+msgstr "Pro Tipp: Dabei erhältst du auch deinen Benutzernamen zugeschickt."
+
+#: .\account\templates\account\password-reset-form.html:35
+msgid "Request email"
+msgstr "E-Mail anfordern"
 
 #: .\account\templates\account\profile.html:5
 #: .\account\templates\account\profile.html:10
@@ -298,6 +431,6 @@ msgstr "Du hast deinem Account noch keine OAuth-Provider hinzugefügt."
 msgid "Manage account"
 msgstr "Account verwalten"
 
-#: .\account\templates\admin\login.html:41
+#: .\account\templates\admin\login.html:43
 msgid "Other login methods"
 msgstr "Weitere Anmeldemethoden"
