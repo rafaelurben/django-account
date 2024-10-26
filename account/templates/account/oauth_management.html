@@ -1,22 +1,29 @@
 {% extends 'account/base.html' %}
 
-{% block title %}OAuth-Provider{{ block.super }}{% endblock %}
+{% load i18n %}
+
+{% block title %}{% translate 'OAuth providers' %}{{ block.super }}{% endblock %}
 
 {% block content %}
     {% url 'account:home' as homeurl %}
 
-    <h2>OAuth-Provider verwalten</h2>
+    <h2>{% translate 'Manage OAuth providers' %}</h2>
+    <p>{% translate 'You can manage your registered OAuth providers here.' %}</p>
 
-    <p>Du hast folgende OAuth-Provider registriert:</p>
+    <p>
+        <a class="btn btn-secondary" href="{{ homeurl }}">
+            <i class="fas fa-arrow-left me-1"></i>
+            {% translate 'Back' %}
+        </a>
+    </p>
+
+    <p>{% translate 'You have registered the following OAuth providers:' %}</p>
 
     {% include "account/snippets/social_manage.html" with next=homeurl %}
 
-    <p>Hier kannst du zusätzliche OAuth-Provider hinzufügen:</p>
+    <p>{% translate 'You can add additional OAuth providers here:' %}</p>
 
     {% include "account/snippets/social_login.html" with next=homeurl %}
-
-    <a class="btn btn-secondary mt-3" href="{{ homeurl }}">Zurück</a>
-
 {% endblock %}
 
 {% block help %}

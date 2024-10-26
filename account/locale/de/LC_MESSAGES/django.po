@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2024 Rafael Urben
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Rafael Urben <dev@rafaelurben.ch>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 11:33+0200\n"
+"POT-Creation-Date: 2024-10-26 12:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,8 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: .\account\templates\account\base.html:46
+#: .\account\templates\account\snippets\messages.html:9
+#: .\account\templates\account\snippets\messages.html:14
 msgid "Close"
 msgstr "Schliessen"
 
@@ -54,6 +56,94 @@ msgstr ""
 msgid "Get support"
 msgstr "Erhalte Support"
 
+#: .\account\templates\account\error.html:5
+msgid "Error"
+msgstr "Error"
+
+#: .\account\templates\account\error.html:9
+msgid "404 - Not found"
+msgstr "404 - Nicht gefunden"
+
+#: .\account\templates\account\error.html:10
+msgid "Sorry, this page was not found!"
+msgstr "Diese Seite wurde leider nicht gefunden!"
+
+#: .\account\templates\account\home.html:5
+msgid "Home"
+msgstr "Startseite"
+
+#: .\account\templates\account\home.html:10
+msgid "Your account"
+msgstr "Dein Account"
+
+#: .\account\templates\account\home.html:15
+#, python-format
+msgid ""
+"Hello %(name)s! You are on the start page of the account management of your "
+"account for %(APPLICATION_NAME)s."
+msgstr ""
+"Hallo %(name)s! Du befindest dich hier auf der Startseite der "
+"Accountverwaltung deines Accounts für %(APPLICATION_NAME)s."
+
+#: .\account\templates\account\home.html:25
+#: .\account\templates\account\login.html:20
+#: .\account\templates\account\snippets\menubar.html:24
+#: .\account\templates\account\snippets\menubar.html:26
+msgid "Leave account management"
+msgstr "Accountverwaltung verlassen"
+
+#: .\account\templates\account\home.html:33
+msgid "Edit profile picture on Gravatar"
+msgstr "Profilbild auf Gravatar bearbeiten"
+
+#: .\account\templates\account\home.html:42
+msgid "Edit profile"
+msgstr "Profil bearbeiten"
+
+#: .\account\templates\account\home.html:51
+msgid "Login methods"
+msgstr "Anmeldemethoden"
+
+#: .\account\templates\account\home.html:53
+msgid "You can manage your login methods here."
+msgstr "Hier kannst du deine Anmeldemethoden verwalten."
+
+#: .\account\templates\account\home.html:61
+msgid "Manage passkeys"
+msgstr "Passkeys verwalten"
+
+#: .\account\templates\account\home.html:76
+#: .\account\templates\account\oauth_management.html:10
+msgid "Manage OAuth providers"
+msgstr "OAuth-Provider verwalten"
+
+#: .\account\templates\account\home.html:83
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: .\account\templates\account\home.html:87
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: .\account\templates\account\home.html:91
+msgid "Set password"
+msgstr "Passwort setzen"
+
+#: .\account\templates\account\home.html:99
+#: .\account\templates\account\home.html:104
+msgid "Delete account"
+msgstr "Account verwalten"
+
+#: .\account\templates\account\home.html:101
+msgid "Would you like to delete your account?"
+msgstr "Möchtest du deinen Account löschen?"
+
+#: .\account\templates\account\home.html:114
+msgid "On this page you can view your data and make various changes to it."
+msgstr ""
+"Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran "
+"vornehmen."
+
 #: .\account\templates\account\login.html:5
 #: .\account\templates\account\login.html:11
 #: .\account\templates\account\snippets\menubar.html:32
@@ -66,12 +156,6 @@ msgstr "Login"
 msgid "Here you can login with your account for %(APPLICATION_NAME)s."
 msgstr ""
 "Hier kannst du dich mit deinem Account für %(APPLICATION_NAME)s einloggen."
-
-#: .\account\templates\account\login.html:20
-#: .\account\templates\account\snippets\menubar.html:24
-#: .\account\templates\account\snippets\menubar.html:26
-msgid "Leave account management"
-msgstr "Accountverwaltung verlassen"
 
 #: .\account\templates\account\login.html:28
 msgid "Login with password or passkey"
@@ -139,6 +223,50 @@ msgstr ""
 "Passkeys sind eine neue und sichere Authentifizierungsmethode, welche nicht "
 "durch Phishing abgefangen werden können."
 
+#: .\account\templates\account\oauth_management.html:5
+msgid "OAuth providers"
+msgstr "OAuth-Provider"
+
+#: .\account\templates\account\oauth_management.html:11
+msgid "You can manage your registered OAuth providers here."
+msgstr "Hier kannst du deine registrierten OAuth-Provider verwalten."
+
+#: .\account\templates\account\oauth_management.html:16
+#: .\account\templates\account\passkeys\passkeys_base.html:21
+#: .\account\templates\account\profile.html:16
+msgid "Back"
+msgstr "Zurück"
+
+#: .\account\templates\account\oauth_management.html:20
+msgid "You have registered the following OAuth providers:"
+msgstr "Du hast folgende OAuth-Provider registriert:"
+
+#: .\account\templates\account\oauth_management.html:24
+msgid "You can add additional OAuth providers here:"
+msgstr "Hier kannst du zusätzliche OAuth-Provider hinzufügen:"
+
+#: .\account\templates\account\passkeys\passkeys_base.html:5
+#: .\account\templates\account\passkeys\passkeys_base.html:15
+msgid "Passkeys"
+msgstr "Passkeys"
+
+#: .\account\templates\account\passkeys\passkeys_base.html:16
+msgid "You can manage your saved passkeys here."
+msgstr "Hier kannst du deine gespeicherten Passkeys verwalten."
+
+#: .\account\templates\account\profile.html:5
+#: .\account\templates\account\profile.html:10
+msgid "Your profile"
+msgstr "Dein Profil"
+
+#: .\account\templates\account\profile.html:11
+msgid "You can change your personal data here."
+msgstr "Hier kannst du deine persönlichen Daten ändern."
+
+#: .\account\templates\account\profile.html:25
+msgid "Save profile"
+msgstr "Profil speichern"
+
 #: .\account\templates\account\snippets\menubar.html:47
 #: .\account\templates\account\snippets\menubar.html:49
 msgid "Admin"
@@ -149,7 +277,27 @@ msgstr "Admin"
 msgid "Logout"
 msgstr "Logout"
 
+#: .\account\templates\account\snippets\messages.html:8
+msgid "Error:"
+msgstr "Error:"
+
 #: .\account\templates\account\snippets\social_login.html:38
 #, python-format
 msgid "Login with %(provider_name)s"
 msgstr "Mit %(provider_name)s einloggen"
+
+#: .\account\templates\account\snippets\social_manage.html:19
+msgid "Remove authentication method"
+msgstr "Anmeldemethode entferne"
+
+#: .\account\templates\account\snippets\social_manage.html:27
+msgid "You have not yet added any OAuth providers to your account."
+msgstr "Du hast deinem Account noch keine OAuth-Provider hinzugefügt."
+
+#: .\account\templates\admin\index.html:6
+msgid "Manage account"
+msgstr "Account verwalten"
+
+#: .\account\templates\admin\login.html:41
+msgid "Other login methods"
+msgstr "Weitere Anmeldemethoden"

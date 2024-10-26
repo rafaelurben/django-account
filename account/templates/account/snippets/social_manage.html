@@ -1,4 +1,4 @@
-{% load static account_tags %}
+{% load static account_tags i18n %}
 
 <div id="oauth-current">
     <ul class="list-group my-3">
@@ -8,7 +8,7 @@
             <li class="list-group-item border-dark">
                 <div class="d-flex align-items-center gap-3">
                     <img width="20px" src="{% static display_config.icon %}"
-                         alt="Logo von {{ display_config.title }}"/>
+                         alt="{{ display_config.title }} icon"/>
                     <span>
                         <b>{{ display_config.title }}</b>: {% firstof account.extra_data.display_name account.uid %}
                     </span>
@@ -16,7 +16,7 @@
                           action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
                         {% csrf_token %}
                         <button class="btn btn-outline-danger" role="button" type="submit"
-                                title="Anmeldemethode entfernen">
+                                title="{% trans 'Remove authentication method' %}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>
@@ -24,7 +24,7 @@
             </li>
         {% empty %}
             <li class="list-group-item border-dark">
-                Du hast deinem Account noch keine OAuth-Provider hinzugefügt.
+                {% translate 'You have not yet added any OAuth providers to your account.' %}
             </li>
         {% endfor %}
     </ul>

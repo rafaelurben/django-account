@@ -1,6 +1,8 @@
 {% extends 'account/base.html' %}
 
-{% block title %}Passkeys{% endblock %}
+{% load i18n %}
+
+{% block title %}{% translate 'Passkeys' %}{% endblock %}
 
 {% block extrahead %}
     {{ block.super }}
@@ -10,19 +12,17 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
     {% block head %}
-
     {% endblock %}
 {% endblock %}
 
 {% block content %}
-	<h2>Passkeys</h2>
-
-    <p>Hier kannst du deine gespeicherten Passkeys verwalten.</p>
+	<h2>{% translate 'Passkeys' %}</h2>
+    <p>{% translate 'You can manage your saved passkeys here.' %}</p>
 
     <p>
-        <a class="btn btn-outline-success" href="{% url 'account:home' %}">
+        <a class="btn btn-secondary" href="{% url 'account:home' %}">
             <i class="fas fa-arrow-left me-1"></i>
-            Zurück zur Accountverwaltung
+            {% translate 'Back' %}
         </a>
     </p>
 {% endblock %}

@@ -1,10 +1,15 @@
 {% extends 'account/base.html' %}}
 
-{% block title %}Error{% endblock %}
+{% load i18n %}
+
+{% block title %}{% translate 'Error' %}{% endblock %}
 
 {% block content %}
 
-    <h3>{{ title | default:"404 - Nicht gefunden" }}</h3>
-    <p>{{ text | default:"Diese Seite wurde leider nicht gefunden!"}}</p>
+    {% translate '404 - Not found' as TITLE %}
+    {% translate 'Sorry, this page was not found!' as TEXT %}
+
+    <h3>{{ title | default:TITLE }}</h3>
+    <p>{{ text | default:TEXT }}</p>
     
 {% endblock %}

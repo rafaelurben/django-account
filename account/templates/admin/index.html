@@ -1,6 +1,8 @@
 {% extends "admin/index.html" %}
 
+{% load i18n %}
+
 {% block userlinks %}
-    <a href="{% url 'account:home' %}?next={{ request.path }}">Account verwalten</a> /
+    <a href="{% url 'account:home' %}?next={{ request.path }}">{% translate 'Manage account' %}</a> /
     {{ block.super }}
 {% endblock %}

@@ -1,14 +1,20 @@
 {% extends 'account/base.html' %}
 
-{% block title %}Dein Profil{{ block.super }}{% endblock %}
+{% load i18n %}
+
+{% block title %}{% translate 'Your profile' %}{{ block.super }}{% endblock %}
 
 {% block content %}
     {% url 'account:home' as homeurl %}
 
-    <h2>Dein Profil</h2>
+    <h2>{% translate 'Your profile' %}</h2>
+    <p>{% translate 'You can change your personal data here.' %}</p>
+
     <p>
-        Hier kannst du deine persönlichen Daten ändern.
-        (<a href="#" data-bs-toggle="offcanvas" data-bs-target="#helpCanvas" aria-controls="helpCanvas">Hilfe</a>)
+        <a class="btn btn-secondary" href="{{ homeurl }}">
+            <i class="fas fa-arrow-left me-1"></i>
+            {% translate 'Back' %}
+        </a>
     </p>
 
     <form method="post">
@@ -16,9 +22,7 @@
 
         {% include 'account/snippets/form.html' with form=form %}
 
-        <br>
-        <input type="submit" class="btn btn-success" value="Speichern und zurück">
-        <a class="btn btn-secondary" href="{{ homeurl }}">Zurück</a>
+        <input type="submit" class="btn btn-success" value="{% trans 'Save profile' %}">
     </form>
 
 {% endblock %}

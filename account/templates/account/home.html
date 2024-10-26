@@ -1,23 +1,28 @@
 {% extends 'account/base.html' %}
 
-{% load static account_tags %}
+{% load static account_tags i18n %}
 
-{% block title %}Startseite{% endblock %}
+{% block title %}{% translate 'Home' %}{% endblock %}
 
 {% block content %}
     {% url 'account:home' as accounthome %}
 
-    <h2>Dein Account</h2>
+    <h2>{% translate 'Your account' %}</h2>
 
     <p>
-        Hallo {{ user.first_name | default:user.username }}! Du befindest dich hier auf der Startseite der
-        Accountverwaltung deines Accounts für Rafaels Webapps.
+        {% account_config 'APPLICATION_NAME' as APPLICATION_NAME %}
+        {% with name=user.first_name|default:user.username %}
+            {% blocktranslate trimmed %}
+                Hello {{ name }}! You are on the start page of the account management of your account for
+                {{ APPLICATION_NAME }}.
+            {% endblocktranslate %}
+        {% endwith %}
     </p>
 
     <p>
         <a class="btn btn-outline-success" href="{% url 'account:leave' %}">
             <i class="fas fa-arrow-left me-1"></i>
-            Accountverwaltung verlassen
+            {% translate 'Leave account management' %}
         </a>
     </p>
 
@@ -25,7 +30,8 @@
         <div class="col-12 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body text-center">
-                    <a href="https://gravatar.com/" title="Profilbild auf Gravatar bearbeiten" target="_blank">
+                    <a href="https://gravatar.com/" title="{% trans 'Edit profile picture on Gravatar' %}"
+                       target="_blank">
                         <img src="{{ avatar_url }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     </a>
                     <h4 class="my-3">{{ user.first_name }} {{ user.last_name }}</h4>
@@ -33,7 +39,7 @@
                     <p class="text-muted mb-4">{{ user.email }}</p>
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-primary" href="{% url 'account:profile' %}">
-                            Profil bearbeiten
+                            {% translate 'Edit profile' %}
                         </a>
                     </div>
                 </div>
@@ -42,9 +48,9 @@
         <div class="col">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Anmeldemethoden</h3>
+                    <h3>{% translate 'Login methods' %}</h3>
 
-                    <p class="mb-3">Hier kannst du deine Anmeldemethoden verwalten.</p>
+                    <p class="mb-3">{% translate 'You can manage your login methods here.' %}</p>
 
                     <p>Passkeys sind der neuste Login-Standard und bringen den höchsten Komfort:</p>
 
@@ -52,7 +58,7 @@
                         <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
                              class="me-1"
                              alt="Passkey icon">
-                        Passkeys verwalten
+                        {% translate 'Manage passkeys' %}
                     </a>
 
                     <p>Folgende <abbr title="OAuth-Provider">Anbieter</abbr> können mit dem Account verknüpft werden:
@@ -67,22 +73,22 @@
                     <a class="mb-3 btn btn-secondary d-inline-flex align-items-center gap-1"
                        href="{% url 'account:oauth-management' %}"
                        role="link">
-                        Drittanbieter-Logins verwalten
+                        {% translate 'Manage OAuth providers' %}
                     </a>
 
                     <p>Hier kannst du dein Passwort setzen, zurücksetzen oder ändern:</p>
 
                     {% if user.has_usable_password %}
                         <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
-                            Passwort zurücksetzen
+                            {% translate 'Reset password' %}
                         </a>
 
                         <a class="btn btn-secondary" href="{% url 'account:password-change' %}">
-                            Passwort ändern
+                            {% translate 'Change password' %}
                         </a>
                     {% else %}
                         <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
-                            Passwort setzen
+                            {% translate 'Set password' %}
                         </a>
                     {% endif %}
                 </div>
@@ -90,12 +96,12 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Account löschen</h3>
+                    <h3>{% translate 'Delete account' %}</h3>
 
-                    <p class="mb-3">Möchtest du deinen Account löschen?</p>
+                    <p class="mb-3">{% translate 'Would you like to delete your account?' %}</p>
 
                     <a class="btn btn-danger mb-1" href="{% url 'account:delete-account' %}">
-                        Account löschen
+                        {% translate 'Delete account' %}
                     </a>
                 </div>
             </div>
@@ -105,7 +111,7 @@
 {% endblock %}
 
 {% block help %}
-    <p>Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran vornehmen.</p>
+    <p>{% translate 'On this page you can view your data and make various changes to it.' %}</p>
 
     <hr>
 

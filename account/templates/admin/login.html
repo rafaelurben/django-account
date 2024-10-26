@@ -1,5 +1,7 @@
 {% extends "admin/login.html" %}
 
+{% load i18n %}
+
 {% block footer %}
     {{ block.super }}
 
@@ -38,7 +40,7 @@
     <hr>
     <div class="more-signin-methods-container" style="margin: 1.3rem;">
         <a href="{% url 'account:login' %}?next={{ next }}" class="more-signin-methods-button">
-            Weitere Anmeldemethoden
+            {% translate 'Other login methods' %}
         </a>
     </div>
 
