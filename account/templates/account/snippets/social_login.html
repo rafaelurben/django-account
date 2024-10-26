@@ -1,4 +1,4 @@
-{% load static account_tags %}
+{% load static account_tags i18n %}
 
 <div id="social-logins" class="account-social-logins {% if column %}flex-column{% endif %}">
     <style>
@@ -33,7 +33,11 @@
     	<div>
             <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' backend %}?next={{ next }}" role="button">
                 <img alt="Logo von {{ display_config.title }}" src="{% static display_config.icon %}" />
-                <span>Mit {{ display_config.title }} anmelden</span>
+                <span>
+                    {% with provider_name=display_config.title %}
+                        {% blocktranslate %}Login with {{ provider_name }}{% endblocktranslate %}
+                    {% endwith %}
+                </span>
             </a>
         </div>
     {% endfor %}

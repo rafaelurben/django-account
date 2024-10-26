@@ -1,22 +1,23 @@
 {% extends 'account/base.html' %}
 
-{% load static %}
+{% load static i18n account_tags %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{% translate 'Login' %}{% endblock %}
 
 {% block content %}
     {% url 'account:leave' as leave %}
+    {% account_config 'APPLICATION_NAME' as APPLICATION_NAME %}
 
-    <h2>Login</h2>
+    <h2>{% translate 'Login' %}</h2>
 
     <p>
-        Hier kannst du dich mit deinem Account für Rafaels Webapps einloggen.
+        {% blocktranslate %}Here you can login with your account for {{ APPLICATION_NAME }}.{% endblocktranslate %}
     </p>
 
     <p>
         <a class="btn btn-outline-success" href="{{ leave }}">
             <i class="fas fa-arrow-left me-1"></i>
-            Accountverwaltung verlassen
+            {% translate 'Leave account management' %}
         </a>
     </p>
 
@@ -24,11 +25,9 @@
         <div class="col-12 col-lg-8">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Login mit Passwort oder Passkey</h3>
+                    <h3>{% translate 'Login with password or passkey' %}</h3>
                     <p>
-                        Mit Benutzername & Passwort oder mit
-                        <abbr title="Passkeys sind eine neue und sichere Authentifizierungsmethode, welche nicht durch Phishing abgefangen werden können.">Passkey</abbr>
-                        einloggen:
+                        {% translate 'Login with username and password or passkey:' %}
                     </p>
 
                     <form method="post" id="loginForm">
@@ -36,13 +35,14 @@
 
                         {% include 'account/snippets/form.html' with form=form %}
 
-                        <input type="submit" class="btn btn-primary" value="Einloggen">
+                        <input type="submit" class="btn btn-primary"
+                               value="{% translate 'Login' context 'Login button' %}">
 
                         {# Passkeys #}
                         <button class="btn btn-block btn-secondary" type="button" onclick="authn('loginForm')">
                             <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
                                  alt="Passkey Icon">
-                            Mit Passkey anmelden
+                            {% translate 'Login with passkey' %}
                         </button>
                         <script
                                 src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -61,8 +61,8 @@
         <div class="col-12 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Weiter via OAuth</h3>
-                    <p>Mit einem Drittanbieter einloggen:</p>
+                    <h3>{% translate 'Login via OAuth' %}</h3>
+                    <p>{% translate 'Login with a third party:' %}</p>
 
                     {% include "account/snippets/social_login.html" with next=leave column=True %}
                 </div>
@@ -71,12 +71,11 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Passwort oder Benutzername vergessen?</h3>
-                    <p>Hier kannst du dein Passwort (zurück-)setzen. Dabei erhältst du auch deinen Benutzernamen
-                        zugesendet.</p>
+                    <h3>{% translate 'Forgot password or username?' %}</h3>
+                    <p>{% translate 'Here you can (re)set your password. You will also be sent your user name.' %}</p>
 
                     <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
-                        Passwort (zurück-)setzen
+                        {% translate '(Re)set password' %}
                     </a>
                 </div>
             </div>
@@ -84,13 +83,26 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h3>Registrieren</h3>
+                    <h3>{% translate 'Register' %}</h3>
                     <p class="mb-0">
-                        Das Erstellen eines neuen Accounts ist zurzeit nur via OAuth-Provider möglich. Beim Einloggen
-                        mit einem der Anbieter oben wird automatisch ein Account für dich erstellt.
+                        {% blocktranslate trimmed %}
+                            Creating a new account is currently only possible via an OAuth provider. When you log in
+                            with one of the providers above, an account is automatically created for you.
+                        {% endblocktranslate %}
                     </p>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block help %}
+    <p>
+        <b>{% translate 'Passkeys:' %}</b> 
+        {% translate 'Passkeys are a new and secure authentication method that cannot be intercepted by phishing.' %}
+    </p>
+
+    <hr>
+
+    {{ block.super }}
 {% endblock %}
