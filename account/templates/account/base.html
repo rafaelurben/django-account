@@ -14,7 +14,7 @@
 
         {% comment %} <link rel="manifest" href="{% url "account:manifest" %}"> {% endcomment %}
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous" referrerpolicy="no-referrer">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{% static 'account/css/darkmode.css' %}">
 
@@ -33,7 +33,7 @@
 
         {% include 'account/snippets/menubar.html' %}
 
-        <div class="px-4 py-3 container-fluid">
+        <div class="px-3 px-lg-4 py-3 container-fluid">
             {% include 'account/snippets/messages.html' %}
 
             {% block content %}{% endblock %}
