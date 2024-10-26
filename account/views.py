@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.urls import reverse_lazy, reverse
@@ -40,8 +42,10 @@ def passkey_management(request):
 @account_entrypoint()
 @login_required(login_url=reverse_lazy('account:login'))
 def profile(request):
+    # Copy needed because otherwise the template already receives new values even when an invalid form is submitted
+    user = deepcopy(request.user)
     if request.method == "POST":
-        form = ProfileForm(request.POST, instance=request.user)
+        form = ProfileForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             nexturl = request.GET.get("next", "")
@@ -49,7 +53,7 @@ def profile(request):
                 return redirect(reverse('account:home') + "?next=" + nexturl)
             return redirect(reverse('account:home'))
     else:
-        form = ProfileForm(instance=request.user)
+        form = ProfileForm(instance=user)
     return render(request, 'account/profile.html', {'form': form})
 
 
