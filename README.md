@@ -1,7 +1,7 @@
-# Django accounts
+# django-account
 
-A simple django app used in [app.rafaelurben.ch/account](https://app.rafaelurben.ch/account) to manage user accounts. Not meant to be used elsewhere
-without further modifications.
+A simple django app used in [app.rafaelurben.ch/account](https://app.rafaelurben.ch/account) for users to manage their
+profile and authentication methods.
 
 Depends on [social-auth-app-django](https://github.com/python-social-auth/social-app-django)
 and [django-passkeys](https://github.com/mkalioby/django-passkeys).
@@ -9,22 +9,19 @@ and [django-passkeys](https://github.com/mkalioby/django-passkeys).
 ## Features
 
 - [x] Account overview page
-- [x] Passkey support
-- [x] OAuth2 login and registration via
-    - [x] Google
-    - [x] Discord
-    - [x] GitHub
-    - [x] Microsoft
-- [x] Login via username and password
-- [x] Password change / reset
-- [x] Logout
-- [x] "Back to app" button
+- [x] Profile page (username, first & last name)
+- [x] Authentication method management
+    - [x] Passkey support (via [django-passkeys](https://github.com/mkalioby/django-passkeys))
+    - [x] OAuth2 support (via [social-auth-app-django](https://github.com/python-social-auth/social-app-django))
+    - [x] Username/password support (via Django itself)
+        - [x] Password change & reset
+- [x] "Back to app" button that will keep track on where you want to go
+- [x] Multilingual (currently supported: 🇬🇧 English and 🇩🇪 German)
 - [x] Help section
 
 ### Planned features
 
-- [ ] Delete password
-- [ ] Register via email
+See the [project board](https://github.com/users/rafaelurben/projects/10/views/1) for planned features.
 
 ## Example config
 
@@ -62,6 +59,12 @@ AUTHENTICATION_BACKENDS = (
     'account.backends.MicrosoftOAuth2',
     'passkeys.backend.PasskeyModelBackend',
 )
+
+# Account pages config
+
+ACCOUNT_APPLICATION_NAME = 'My super cool example app'
+ACCOUNT_HELP_SUPPORT_OPTIONS = [('E-Mail', 'mailto:help@example.com'),
+                                ('Help center', 'https://example.com/help')]
 
 # Passkeys config
 
