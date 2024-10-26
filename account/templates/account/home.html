@@ -100,13 +100,15 @@
                     </h5>
                     <p>{% translate 'The oldest but simplest option.' context 'Password description' %}</p>
                     {% if user.has_usable_password %}
-                        <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
-                            {% translate 'Reset password' %}
-                        </a>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
+                                {% translate 'Reset password' %}
+                            </a>
 
-                        <a class="btn btn-secondary" href="{% url 'account:password-change' %}">
-                            {% translate 'Change password' %}
-                        </a>
+                            <a class="btn btn-secondary" href="{% url 'account:password-change' %}">
+                                {% translate 'Change password' %}
+                            </a>
+                        </div>
                     {% else %}
                         <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">
                             {% translate 'Set password' %}
