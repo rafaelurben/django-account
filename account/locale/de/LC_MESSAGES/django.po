@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 19:15+0200\n"
+"POT-Creation-Date: 2024-12-07 23:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,35 +117,35 @@ msgctxt "Passkey description"
 msgid "The newest and most secure option."
 msgstr "Die neuste und sicherste Option."
 
-#: .\account\templates\account\home.html:69
+#: .\account\templates\account\home.html:68
 msgid "Manage passkeys"
 msgstr "Passkeys verwalten"
 
-#: .\account\templates\account\home.html:78
+#: .\account\templates\account\home.html:77
 #: .\account\templates\account\oauth_management.html:5
 msgid "OAuth providers"
 msgstr "OAuth-Provider"
 
-#: .\account\templates\account\home.html:80
+#: .\account\templates\account\home.html:79
 msgctxt "OAuth description"
 msgid "Supported providers:"
 msgstr "Unterstützte Anbieter:"
 
-#: .\account\templates\account\home.html:92
+#: .\account\templates\account\home.html:90
 #: .\account\templates\account\oauth_management.html:10
 msgid "Manage OAuth providers"
 msgstr "OAuth-Provider verwalten"
 
-#: .\account\templates\account\home.html:101
+#: .\account\templates\account\home.html:99
 msgid "Password"
 msgstr "Passwort"
 
-#: .\account\templates\account\home.html:103
+#: .\account\templates\account\home.html:101
 msgctxt "Password description"
 msgid "The oldest but simplest option."
 msgstr "Die älteste aber einfachste Option."
 
-#: .\account\templates\account\home.html:107
+#: .\account\templates\account\home.html:105
 #: .\account\templates\account\login.html:78
 #: .\account\templates\account\password-reset-done.html:5
 #: .\account\templates\account\password-reset-done.html:9
@@ -156,14 +156,14 @@ msgstr "Die älteste aber einfachste Option."
 msgid "Reset password"
 msgstr "Passwort zurücksetzen"
 
-#: .\account\templates\account\home.html:111
+#: .\account\templates\account\home.html:109
 #: .\account\templates\account\password-change.html:5
 #: .\account\templates\account\password-change.html:8
 #: .\account\templates\account\password-change.html:14
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: .\account\templates\account\home.html:115
+#: .\account\templates\account\home.html:114
 #: .\account\templates\account\password-reset-confirm.html:5
 #: .\account\templates\account\password-reset-confirm.html:9
 #: .\account\templates\account\password-reset-confirm.html:21
@@ -171,16 +171,16 @@ msgstr "Passwort ändern"
 msgid "Set password"
 msgstr "Passwort setzen"
 
-#: .\account\templates\account\home.html:123
-#: .\account\templates\account\home.html:128
+#: .\account\templates\account\home.html:122
+#: .\account\templates\account\home.html:127
 msgid "Delete account"
 msgstr "Account löschen"
 
-#: .\account\templates\account\home.html:125
+#: .\account\templates\account\home.html:124
 msgid "Would you like to delete your account?"
 msgstr "Möchtest du deinen Account löschen?"
 
-#: .\account\templates\account\home.html:138
+#: .\account\templates\account\home.html:137
 msgid "On this page you can view your data and make various changes to it."
 msgstr ""
 "Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran "
@@ -458,3 +458,7 @@ msgstr "Account verwalten"
 #: .\account\templates\admin\login.html:43
 msgid "Other login methods"
 msgstr "Weitere Anmeldemethoden"
+
+#: .\account\views.py:40
+msgid "You are now logged out!"
+msgstr "Du bist nun ausgeloggt."

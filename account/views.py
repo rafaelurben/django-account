@@ -1,11 +1,14 @@
 from copy import deepcopy
 
+from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
+from django.core.mail import mail_admins
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.core.mail import mail_admins
+from django.utils.translation import gettext as _
 
 from .forms import ProfileForm, DeleteForm
 from .utils import pop_session_next, account_entrypoint, get_avatar_url
@@ -28,6 +31,17 @@ def home(request):
 def leave(request):
     nexturl = pop_session_next(request)
     return redirect(nexturl)
+
+
+class LogoutView(auth_views.LogoutView):
+    http_method_names = ['get', 'post', 'options']
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, _("You are now logged out!"))
+        return super().post(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 @account_entrypoint()
@@ -69,7 +83,7 @@ def delete_account(request):
             user = request.user
             user.is_active = False
             user.save()
-            logout(request)
+            auth_logout(request)
 
             subject = f"Account disabled - please delete @{user.username}"
             body = get_template("account/account-delete-email.html").render({
