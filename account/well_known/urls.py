@@ -1,9 +1,10 @@
-from account.well_known import views
+"""
+This url config must be included at /.well-known/, if it is included.
+"""
+
 from django.urls import path
 
-#######################
-# Note: This url config must be included at /.well-known/, if it is included.
-#######################
+from account.well_known import views
 
 urlpatterns = [
 
@@ -13,4 +14,6 @@ urlpatterns = [
     path('webauthn',
          views.webauthn),
 
+    path('passkey-endpoints',
+         views.passkey_endpoints),
 ]
