@@ -70,11 +70,11 @@ ACCOUNT_HELP_SUPPORT_OPTIONS = [('E-Mail', 'mailto:help@example.com'),
 
 FIDO_SERVER_ID = "your.main.domain"
 FIDO_SERVER_NAME = "Your app name"
-KEY_ATTACHMENT = "cross-platform"
+KEY_ATTACHMENT = None
 
 PASSKEY_RELATED_ORIGINS = [
-    "your.alternative.domain",
-    "www.your.alternative.domain",
+    "https://your.second.domain",
+    "https://your.third.domain",
 ]
 
 # Social Auth Config
