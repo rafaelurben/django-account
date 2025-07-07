@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 
 
 class HasUsablePasswordFilter(SimpleListFilter):
-    title = _('Password?')
+    title = _('password?')
     parameter_name = 'has_usable_password'
 
     def lookups(self, request, model_admin):
@@ -27,7 +27,7 @@ class HasUsablePasswordFilter(SimpleListFilter):
 
 
 class HasUsablePasskeyFilter(SimpleListFilter):
-    title = _('Passkey?')
+    title = _('passkey?')
     parameter_name = 'has_usable_passkey'
 
     def lookups(self, request, model_admin):

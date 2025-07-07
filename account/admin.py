@@ -14,8 +14,8 @@ from account.models import User
 class UserAdminPasskeyInline(admin.TabularInline):
     model = passkey_models.UserPasskey
     extra = 0
-    verbose_name = 'Passkey'
-    verbose_name_plural = 'Passkeys'
+    verbose_name = _('passkey')
+    verbose_name_plural = _('passkeys')
     fields = ('name', 'enabled', 'platform', 'credential_id', 'added_on', 'last_used')
     readonly_fields = ('added_on', 'last_used', 'credential_id', 'token')
 
@@ -26,8 +26,8 @@ class UserAdminPasskeyInline(admin.TabularInline):
 class UserAdminSocialAuthInline(admin.TabularInline):
     model = socialauth_models.UserSocialAuth
     extra = 0
-    verbose_name = 'Drittanbieter-Account'
-    verbose_name_plural = 'Drittanbieter-Accounts'
+    verbose_name = _('third-party account')
+    verbose_name_plural = _('third-party accounts')
     fields = ('provider', 'uid', 'extra_data', 'created', 'modified')
     readonly_fields = ('provider', 'uid', 'created', 'modified')
 
@@ -62,11 +62,11 @@ class UserAdmin(DjangoUserAdmin):
 
     # Admin displays
 
-    @admin.display(boolean=True, description=_('Password?'), ordering='annotation_has_usable_password')
+    @admin.display(boolean=True, description=_('password?'), ordering='annotation_has_usable_password')
     def has_usable_password(self, user):
         return user.annotation_has_usable_password
 
-    @admin.display(boolean=True, description=_('Passkey?'), ordering='annotation_has_usable_passkey')
+    @admin.display(boolean=True, description=_('passkey?'), ordering='annotation_has_usable_passkey')
     def has_usable_passkey(self, user):
         return user.annotation_has_usable_passkey
 

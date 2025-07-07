@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 01:06+0200\n"
+"POT-Creation-Date: 2025-07-08 01:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\account\admin.py:17
+msgid "passkey"
+msgstr "Passkey"
+
+#: .\account\admin.py:18
+msgid "passkeys"
+msgstr "Passkeys"
+
+#: .\account\admin.py:29
+msgid "third-party account"
+msgstr "Drittanbieter-Account"
+
+#: .\account\admin.py:30
+msgid "third-party accounts"
+msgstr "Drittanbieter-Accounts"
+
 #: .\account\admin.py:65 .\account\filters.py:9
-msgid "Password?"
+msgid "password?"
 msgstr "Passwort?"
 
 #: .\account\admin.py:69 .\account\filters.py:30
-msgid "Passkey?"
+msgid "passkey?"
 msgstr "Passkey?"
 
 #: .\account\admin.py:73 .\account\filters.py:49
