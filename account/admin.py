@@ -2,7 +2,10 @@ import passkeys.models as passkey_models
 import social_django.models as socialauth_models
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
+from django.db.models import OuterRef, Exists, Case, When, Q, Value, BooleanField
+from django.utils.translation import gettext as _
 
+from account.filters import HasUsablePasswordFilter, HasUsablePasskeyFilter, HasUsableOAuthFilter
 from account.models import User
 
 
@@ -35,23 +38,38 @@ class UserAdminSocialAuthInline(admin.TabularInline):
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
     list_display = (
-        'username', 'email', 'first_name', 'last_name', 'has_usable_password', 'has_usable_passkey', 'has_usable_oauth')
+        'username', 'email', 'first_name', 'last_name', 'has_usable_password', 'has_usable_passkey', 'has_usable_oauth',
+        'date_joined', 'last_login')
+    list_filter = ('is_staff', 'is_active', 'is_superuser', 'date_joined', 'last_login', HasUsablePasswordFilter,
+                   HasUsablePasskeyFilter, HasUsableOAuthFilter,)
 
     inlines = (UserAdminPasskeyInline, UserAdminSocialAuthInline)
 
     def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('social_auth', 'userpasskey_set')
+        return super().get_queryset(request).annotate(
+            annotation_has_usable_password=Case(
+                When(Q(password__isnull=False) & ~Q(password__startswith='!'), then=Value(True)),
+                default=Value(False),
+                output_field=BooleanField(),
+            ),
+            annotation_has_usable_passkey=Exists(passkey_models.UserPasskey.objects.filter(
+                user=OuterRef('pk'), enabled=True
+            )),
+            annotation_has_usable_oauth=Exists(socialauth_models.UserSocialAuth.objects.filter(
+                user=OuterRef('pk')
+            )),
+        )
 
     # Admin displays
 
-    @admin.display(boolean=True, description='Passwort?')
-    def has_usable_password(self, user: User):
-        return user.has_usable_password()
+    @admin.display(boolean=True, description=_('Password?'), ordering='annotation_has_usable_password')
+    def has_usable_password(self, user):
+        return user.annotation_has_usable_password
 
-    @admin.display(boolean=True, description='Passkey?')
-    def has_usable_passkey(self, user: User):
-        return user.userpasskey_set.filter(enabled=True).count() > 0
+    @admin.display(boolean=True, description=_('Passkey?'), ordering='annotation_has_usable_passkey')
+    def has_usable_passkey(self, user):
+        return user.annotation_has_usable_passkey
 
-    @admin.display(boolean=True, description='OAuth?')
-    def has_usable_oauth(self, user: User):
-        return user.social_auth.count() > 0
+    @admin.display(boolean=True, description=_('OAuth?'), ordering='annotation_has_usable_oauth')
+    def has_usable_oauth(self, user):
+        return user.annotation_has_usable_oauth
