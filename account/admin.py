@@ -2,14 +2,8 @@ import passkeys.models as passkey_models
 import social_django.models as socialauth_models
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-from django.contrib.auth.models import User as DjangoUser
 
-
-# Proxy models
-
-class User(DjangoUser):
-    class Meta(DjangoUser.Meta):
-        proxy = True
+from account.models import User
 
 
 # We're adding a custom admin that extends the default user admin
@@ -51,13 +45,13 @@ class UserAdmin(DjangoUserAdmin):
     # Admin displays
 
     @admin.display(boolean=True, description='Passwort?')
-    def has_usable_password(self, user: DjangoUser):
+    def has_usable_password(self, user: User):
         return user.has_usable_password()
 
     @admin.display(boolean=True, description='Passkey?')
-    def has_usable_passkey(self, user: DjangoUser):
+    def has_usable_passkey(self, user: User):
         return user.userpasskey_set.filter(enabled=True).count() > 0
 
     @admin.display(boolean=True, description='OAuth?')
-    def has_usable_oauth(self, user: DjangoUser):
+    def has_usable_oauth(self, user: User):
         return user.social_auth.count() > 0
