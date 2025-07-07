@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 23:09+0100\n"
+"POT-Creation-Date: 2025-07-08 01:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: .\account\admin.py:65 .\account\filters.py:9
+msgid "Password?"
+msgstr "Passwort?"
+
+#: .\account\admin.py:69 .\account\filters.py:30
+msgid "Passkey?"
+msgstr "Passkey?"
+
+#: .\account\admin.py:73 .\account\filters.py:49
+msgid "OAuth?"
+msgstr "OAuth?"
+
 #: .\account\conf.py:6
 msgid "Account management"
 msgstr "Accountverwaltung"
@@ -25,6 +37,14 @@ msgstr "Accountverwaltung"
 #: .\account\conf.py:7
 msgid "this webapp"
 msgstr "diese Webapp"
+
+#: .\account\filters.py:13 .\account\filters.py:34 .\account\filters.py:53
+msgid "Yes"
+msgstr "Ja"
+
+#: .\account\filters.py:13 .\account\filters.py:34 .\account\filters.py:53
+msgid "No"
+msgstr "Nein"
 
 #: .\account\templates\account\base.html:8
 #: .\account\templates\account\snippets\menubar.html:39
@@ -265,7 +285,7 @@ msgid "You can manage your registered OAuth providers here."
 msgstr "Hier kannst du deine registrierten OAuth-Provider verwalten."
 
 #: .\account\templates\account\oauth_management.html:16
-#: .\account\templates\account\passkeys\passkeys_base.html:21
+#: .\account\templates\account\passkeys\passkeys_base.html:25
 #: .\account\templates\account\password-change-done.html:14
 #: .\account\templates\account\profile.html:16
 msgid "Back"
@@ -280,11 +300,11 @@ msgid "You can add additional OAuth providers here:"
 msgstr "Hier kannst du zusätzliche OAuth-Provider hinzufügen:"
 
 #: .\account\templates\account\passkeys\passkeys_base.html:5
-#: .\account\templates\account\passkeys\passkeys_base.html:15
+#: .\account\templates\account\passkeys\passkeys_base.html:19
 msgid "Passkeys"
 msgstr "Passkeys"
 
-#: .\account\templates\account\passkeys\passkeys_base.html:16
+#: .\account\templates\account\passkeys\passkeys_base.html:20
 msgid "You can manage your saved passkeys here."
 msgstr "Hier kannst du deine gespeicherten Passkeys verwalten."
 
