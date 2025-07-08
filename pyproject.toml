@@ -16,6 +16,7 @@ classifiers = [
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -25,14 +26,15 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
 requires-python = ">= 3.10"
 dependencies = [
-    "Django>=4.2",
-    "social-auth-app-django>=5.0.0",
-    "django-passkeys>=1.2.7",
+    "Django>=4.2, <6",
+    "social-auth-app-django>=5.0.0, <6",
+    "django-passkeys>=1.2.7, <2",
 ]
 dynamic = ["version"]
 
