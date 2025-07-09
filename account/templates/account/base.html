@@ -1,79 +1,88 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
-    {% load static account_tags i18n %}
-    {% account_config 'APPLICATION_NAME' as APPLICATION_NAME %}
+{% load static account_tags i18n %}
+{% account_config 'APPLICATION_NAME' as APPLICATION_NAME %}
 
-    <head>
-        <title>{% block title %}{% endblock %} | {% translate 'Account' %} | {{ APPLICATION_NAME }}</title>
-        <meta charset="utf-8"/>
-        <meta name="robots" content="noindex">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="theme-color" content="#212529"/>
+<head>
+    <title>{% block title %}{% endblock %} | {% translate 'Account' %} | {{ APPLICATION_NAME }}</title>
+    <meta charset="utf-8"/>
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#212529"/>
 
-        {% comment %} <link rel="manifest" href="{% url "account:manifest" %}"> {% endcomment %}
+    {% comment %}
+        <link rel="manifest" href="{% url "account:manifest" %}"> {% endcomment %}
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous" referrerpolicy="no-referrer">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{% static 'account/css/darkmode.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css"
+          integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous"
+          referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+          integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'account/css/darkmode.css' %}">
 
-        {% block extrahead %}{% endblock %}
+    {% block extrahead %}{% endblock %}
 
-        <style>
-            button, a {
-                -webkit-appearance: none !important;
-                -moz-appearance: none !important;
-                appearance: none !important;
-            }
-        </style>
-    </head>
+    <style>
+        button, a {
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+        }
+    </style>
+</head>
 
-    <body>
+<body>
 
-        {% include 'account/snippets/menubar.html' %}
+{% include 'account/snippets/menubar.html' %}
 
-        <div class="px-3 px-lg-4 py-3 container-fluid">
-            {% include 'account/snippets/messages.html' %}
+<div class="px-3 px-lg-4 py-3 container-fluid">
+    {% include 'account/snippets/messages.html' %}
 
-            {% block content %}{% endblock %}
-        </div>
+    {% block content %}{% endblock %}
+</div>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="helpCanvas" aria-labelledby="helpCanvasLable">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="helpCanvasLable">{% translate 'Help' %}</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="{% trans 'Close' %}"></button>
-            </div>
-            <div class="offcanvas-body">
-                {% block help %}
-                    <p class="text-secondary">
-                        {% translate 'This is the account management for your account for all webapps hosted on this website.' %}
-                        <br><br>
-                        (c) 2022-2024, Rafael Urben
-                    </p>
-                    {% account_config 'HELP_SUPPORT_OPTIONS' as HELP_SUPPORT_OPTIONS %}
-                    {% if HELP_SUPPORT_OPTIONS %}
-                        <div class="dropdown mt-3">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="contactDropdownButton" data-bs-toggle="dropdown">
-                                {% translate 'Get support' %}
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="contactDropdownButton">
-                                {% for option in HELP_SUPPORT_OPTIONS %}
-                                    <li><a class="dropdown-item" href="{{ option.1 }}">{{ option.0 }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %} 
-                {% endblock %}
-            </div>
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{% static 'account/js/autodarkmode.js' %}"></script>
-
-        {% block scripts %}
-
+<div class="offcanvas offcanvas-end" tabindex="-1" id="helpCanvas" aria-labelledby="helpCanvasLable">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="helpCanvasLable">{% translate 'Help' %}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="{% translate 'Close' %}"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% block help %}
+            <p class="text-secondary">
+                {% translate 'This is the account management for your account for all webapps hosted on this website.' %}
+                <br><br>
+                (c) 2022-2024, Rafael Urben
+            </p>
+            {% account_config 'HELP_SUPPORT_OPTIONS' as HELP_SUPPORT_OPTIONS %}
+            {% if HELP_SUPPORT_OPTIONS %}
+                <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="contactDropdownButton"
+                            data-bs-toggle="dropdown">
+                        {% translate 'Get support' %}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="contactDropdownButton">
+                        {% for option in HELP_SUPPORT_OPTIONS %}
+                            <li><a class="dropdown-item" href="{{ option.1 }}">{{ option.0 }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         {% endblock %}
-    </body>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"
+        integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'account/js/autodarkmode.js' %}"></script>
+
+{% block scripts %}
+
+{% endblock %}
+</body>
 
 </html>

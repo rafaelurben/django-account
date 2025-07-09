@@ -1,16 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2024 Rafael Urben
+# Copyright (C) 2025 Rafael Urben
 # This file is distributed under the same license as the PACKAGE package.
-# Rafael Urben <dev@rafaelurben.ch>, 2024.
+# Rafael Urben <dev@rafaelurben.ch>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 11:24+0200\n"
+"POT-Creation-Date: 2025-07-09 11:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Rafael Urben <dev@rafaelurben.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -62,33 +61,103 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
+#: .\account\forms.py:34 .\account\forms.py:36
+msgid "This field is required."
+msgstr "Dieses Feld ist erforderlich."
+
+#: .\account\forms.py:49
+msgid "I really want to delete my account."
+msgstr "Ich möchte meinen Account wirklich löschen."
+
+#: .\account\forms.py:52
+msgid "I have read and understood the above notes."
+msgstr "Ich habe die obigen Hinweise gelesen und verstanden."
+
+#: .\account\forms.py:55
+msgid "I am aware that all information linked to this account will be deleted."
+msgstr ""
+"Ich bin mir bewusst, dass alle mit diesem Account verknüpften Informationen "
+"gelöscht werden."
+
+#: .\account\templates\account\account-delete.html:5
+#: .\account\templates\account\account-delete.html:8
+#: .\account\templates\account\home.html:126
+#: .\account\templates\account\home.html:131
+msgid "Delete account"
+msgstr "Account löschen"
+
+#: .\account\templates\account\account-delete.html:9
+msgid "You don't need your account anymore? You can delete it here."
+msgstr "Du benötigst deinen Account nicht mehr? Du kannst ihn hier löschen."
+
+#: .\account\templates\account\account-delete.html:12
+#: .\account\templates\account\account-delete.html:19
+msgid "WARNING:"
+msgstr "WARNUNG:"
+
+#: .\account\templates\account\account-delete.html:13
+#, python-format
+msgid "You are about to delete the account <u>%(username)s</u>!"
+msgstr "Du bist im Begriff, den Account <u>%(username)s</u> zu löschen!"
+
+#: .\account\templates\account\account-delete.html:19
+msgid ""
+"Once you submit this form, your account will be immediately deactivated and "
+"then permanently deleted. Please think carefully before proceeding!"
+msgstr ""
+"Sobald du dieses Formular absendest, wird dein Account sofort deaktiviert "
+"und anschließend dauerhaft gelöscht. Bitte überlege dir diesen Schritt gut!"
+
+#: .\account\templates\account\account-delete.html:23
+msgid ""
+"<b>Note:</b> The final deletion of the account will be done manually within "
+"a few days after deactivation. If you deleted your account by mistake, you "
+"may still have the possibility to reactivate it. Please contact the owner "
+"using the contact information in the help section immediately."
+msgstr ""
+"Die endgültige Löschung des Accounts erfolgt manuell innerhalb weniger Tage "
+"nach der Deaktivierung. Falls du deinen Account versehentlich gelöscht hast, "
+"besteht möglicherweise noch die Möglichkeit, ihn zu reaktivieren. Bitte "
+"kontaktiere dazu umgehend den Besitzer über die Kontaktdaten im Hilfebereich."
+
+#: .\account\templates\account\account-delete.html:38
+msgid "Deactivate & delete account"
+msgstr "Account deaktivieren & löschen"
+
+#: .\account\templates\account\account-delete.html:39
+#: .\account\templates\account\password-change.html:15
+#: .\account\templates\account\password-delete.html:27
+#: .\account\templates\account\password-reset-form.html:36
+msgid "Cancel"
+msgstr "Abbrechen"
+
 #: .\account\templates\account\base.html:8
 #: .\account\templates\account\snippets\menubar.html:39
 #: .\account\templates\account\snippets\menubar.html:41
 msgid "Account"
 msgstr "Account"
 
-#: .\account\templates\account\base.html:45
+#: .\account\templates\account\base.html:50
 #: .\account\templates\account\snippets\menubar.html:64
 #: .\account\templates\account\snippets\menubar.html:66
 msgid "Help"
 msgstr "Hilfe"
 
-#: .\account\templates\account\base.html:46
+#: .\account\templates\account\base.html:52
 #: .\account\templates\account\snippets\messages.html:9
 #: .\account\templates\account\snippets\messages.html:14
 msgid "Close"
 msgstr "Schliessen"
 
-#: .\account\templates\account\base.html:51
+#: .\account\templates\account\base.html:57
 msgid ""
 "This is the account management for your account for all webapps hosted on "
 "this website."
 msgstr ""
-"Dies ist die Accountverwaltung für deinen Account aller auf dieser Webseite "
-"gehosteten Webapps."
+"Dies ist die Accountverwaltung für deinen Account für alle Webapps auf "
+"dieser Website."
 
-#: .\account\templates\account\base.html:59
+#: .\account\templates\account\base.html:66
 msgid "Get support"
 msgstr "Erhalte Support"
 
@@ -160,7 +229,7 @@ msgstr "Passkeys verwalten"
 #: .\account\templates\account\home.html:77
 #: .\account\templates\account\oauth_management.html:5
 msgid "OAuth providers"
-msgstr "OAuth-Provider"
+msgstr "OAuth-Anbieter"
 
 #: .\account\templates\account\home.html:79
 msgctxt "OAuth description"
@@ -170,7 +239,7 @@ msgstr "Unterstützte Anbieter:"
 #: .\account\templates\account\home.html:90
 #: .\account\templates\account\oauth_management.html:10
 msgid "Manage OAuth providers"
-msgstr "OAuth-Provider verwalten"
+msgstr "OAuth-Anbieter verwalten"
 
 #: .\account\templates\account\home.html:99
 msgid "Password"
@@ -213,11 +282,6 @@ msgstr "Passwort löschen"
 #: .\account\templates\account\password-reset-form.html:16
 msgid "Set password"
 msgstr "Passwort setzen"
-
-#: .\account\templates\account\home.html:126
-#: .\account\templates\account\home.html:131
-msgid "Delete account"
-msgstr "Account löschen"
 
 #: .\account\templates\account\home.html:128
 msgid "Would you like to delete your account?"
@@ -305,7 +369,7 @@ msgstr ""
 
 #: .\account\templates\account\oauth_management.html:11
 msgid "You can manage your registered OAuth providers here."
-msgstr "Hier kannst du deine registrierten OAuth-Provider verwalten."
+msgstr "Hier kannst du deine registrierten OAuth-Anbieter verwalten."
 
 #: .\account\templates\account\oauth_management.html:16
 #: .\account\templates\account\passkeys\passkeys_base.html:25
@@ -316,11 +380,33 @@ msgstr "Zurück"
 
 #: .\account\templates\account\oauth_management.html:20
 msgid "You have registered the following OAuth providers:"
-msgstr "Du hast folgende OAuth-Provider registriert:"
+msgstr "Du hast die folgenden OAuth-Anbieter registriert:"
 
 #: .\account\templates\account\oauth_management.html:24
 msgid "You can add additional OAuth providers here:"
-msgstr "Hier kannst du zusätzliche OAuth-Provider hinzufügen:"
+msgstr "Hier kannst du weitere OAuth-Anbieter hinzufügen:"
+
+#: .\account\templates\account\oauth_management.html:31
+msgid "On this page you can manage your OAuth providers."
+msgstr ""
+"Auf dieser Seite kannst du deine registrierten OAuth-Provider verwalten."
+
+#: .\account\templates\account\oauth_management.html:34
+msgid ""
+"An <b>OAuth provider</b> is a third-party service that authenticates you so "
+"you can log in to this site faster and without a password."
+msgstr ""
+"Ein <b>OAuth-Anbieter</b> ist ein Drittanbieterdienst, der dich "
+"authentifiziert, damit du dich schneller und ohne Passwort auf dieser Seite "
+"anmelden kannst."
+
+#: .\account\templates\account\oauth_management.html:39
+msgid ""
+"The security of logging in with such a provider depends on how well you "
+"protect your account with the respective provider."
+msgstr ""
+"Die Sicherheit der Anmeldung mit einem solchen Anbieter hängt davon ab, wie "
+"gut du deinen Account beim jeweiligen Anbieter schützt."
 
 #: .\account\templates\account\passkeys\passkeys_base.html:5
 #: .\account\templates\account\passkeys\passkeys_base.html:19
@@ -348,12 +434,6 @@ msgid "Want to change your password? No problem! Here is the right place."
 msgstr ""
 "Du möchtest dein Passwort ändern? Kein Problem! Hier ist der richtige Platz "
 "dazu."
-
-#: .\account\templates\account\password-change.html:15
-#: .\account\templates\account\password-delete.html:27
-#: .\account\templates\account\password-reset-form.html:36
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: .\account\templates\account\password-delete.html:9
 msgid ""
@@ -423,17 +503,19 @@ msgstr ""
 "\n"
 "Folge folgendem Link um ein neues Passwort zu wählen:\n"
 
-#: .\account\templates\account\password-reset-email.html:9
+#: .\account\templates\account\password-reset-email.html:8
 #, python-format
 msgctxt "Password reset email"
 msgid ""
-"Your username, in case you've forgotten: %(user.username)s\n"
+"\n"
+"Your username, in case you've forgotten: %(username)s\n"
 "\n"
 "If you DID NOT REQUEST a password reset, you can safely ignore this e-mail.\n"
 "\n"
 "Thanks for using %(domain)s!"
 msgstr ""
-"Dein Benutzername, falls du ihn vergessen hast: %(user.username)s\n"
+"\n"
+"Dein Benutzername, falls du ihn vergessen hast: %(username)s\n"
 "\n"
 "Falls du diese Änderung NICHT ANGEFORDERT hast, kannst du diese E-Mail "
 "ignorieren.\n"
@@ -488,6 +570,18 @@ msgstr "Hier kannst du deine persönlichen Daten ändern."
 msgid "Save profile"
 msgstr "Profil speichern"
 
+#: .\account\templates\account\profile.html:32
+msgid "On this page you can change your name."
+msgstr "Auf dieser Seite kannst du deinen Namen ändern."
+
+#: .\account\templates\account\profile.html:34
+msgid ""
+"Changing your email address is currently not possible for technical reasons. "
+"Please contact me if you want to change it."
+msgstr ""
+"Aus technischen Gründen ist das Ändern deiner E-Mail-Adresse derzeit nicht "
+"möglich. Bitte kontaktiere mich, wenn du sie ändern möchtest."
+
 #: .\account\templates\account\snippets\menubar.html:47
 #: .\account\templates\account\snippets\menubar.html:49
 msgid "Admin"
@@ -529,16 +623,22 @@ msgstr "Du bist nun ausgeloggt."
 
 #: .\account\views.py:107
 msgid "You do not currently have a usable password set that could be deleted."
-msgstr "Du hast derzeit kein verwendbares Passwort gesetzt, das gelöscht werden könnte."
+msgstr ""
+"Du hast derzeit kein verwendbares Passwort gesetzt, das gelöscht werden "
+"könnte."
 
 #: .\account\views.py:112
 msgid ""
 "You must have at least one usable passkey or OAuth account to delete your "
 "password."
-msgstr "Du musst mindestens einen verwendbaren Passkey oder ein OAuth-Konto haben, um dein Passwort zu löschen."
+msgstr ""
+"Du musst mindestens einen verwendbaren Passkey oder ein OAuth-Konto haben, "
+"um dein Passwort zu löschen."
 
 #: .\account\views.py:121
 msgid ""
 "Your password has been successfully deleted. Please sign back in using "
 "another method."
-msgstr "Dein Passwort wurde erfolgreich gelöscht. Bitte melde dich mit einer anderen Methode erneut an."
+msgstr ""
+"Dein Passwort wurde erfolgreich gelöscht. Bitte melde dich mit einer anderen "
+"Methode erneut an."

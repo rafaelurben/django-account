@@ -30,7 +30,7 @@
         <div class="col-12 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body text-center">
-                    <a href="https://gravatar.com/" title="{% trans 'Edit profile picture on Gravatar' %}"
+                    <a href="https://gravatar.com/" title="{% translate 'Edit profile picture on Gravatar' %}"
                        target="_blank">
                         <img src="{{ avatar_url }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                     </a>
@@ -54,9 +54,9 @@
 
                     <h5>
                         {% if has_usable_passkey %}
-                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                            <i class="fa-solid fa-fw fa-square-check text-success"></i>
                         {% else %}
-                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                            <i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
                         {% endif %}
                         {% translate 'Passkey' %}
                     </h5>
@@ -70,9 +70,9 @@
 
                     <h5>
                         {% if has_usable_oauth %}
-                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                            <i class="fa-solid fa-fw fa-square-check text-success"></i>
                         {% else %}
-                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                            <i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
                         {% endif %}
                         {% translate 'OAuth providers' %}
                     </h5>
@@ -92,9 +92,9 @@
 
                     <h5>
                         {% if has_usable_password %}
-                        	<i class="fa-solid fa-fw fa-square-check text-success"></i>
+                            <i class="fa-solid fa-fw fa-square-check text-success"></i>
                         {% else %}
-                        	<i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
+                            <i class="fa-solid fa-fw fa-square-xmark text-danger"></i>
                         {% endif %}
                         {% translate 'Password' %}
                     </h5>

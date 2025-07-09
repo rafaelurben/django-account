@@ -16,7 +16,7 @@
                           action="{% url 'social-auth:disconnect_individual' account.provider account.id %}?next={% url 'account:home' %}">
                         {% csrf_token %}
                         <button class="btn btn-outline-danger" role="button" type="submit"
-                                title="{% trans 'Remove authentication method' %}">
+                                title="{% translate 'Remove authentication method' %}">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </form>

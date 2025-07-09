@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import fields, widgets
+from django.utils.translation import gettext_lazy as _
 
 
 class LoginForm(AuthenticationForm):
@@ -30,9 +31,9 @@ class LoginForm(AuthenticationForm):
                 self.confirm_login_allowed(self.user_cache)
         else:
             if not username:
-                self.add_error("username", "Dieses Feld ist zwingend erforderlich.")
+                self.add_error("username", _("This field is required."))
             if not password:
-                self.add_error("password", "Dieses Feld ist zwingend erforderlich.")
+                self.add_error("password", _("This field is required."))
 
         return self.cleaned_data
 
@@ -45,11 +46,10 @@ class ProfileForm(forms.ModelForm):
 
 class DeleteForm(forms.Form):
     confirm1 = forms.BooleanField(required=True,
-                                  label="Ich möchte meinen Account wirklich löschen.")
+                                  label=_("I really want to delete my account."))
 
     confirm2 = forms.BooleanField(required=True,
-                                  label="Ich habe obige Hinweise gelesen und verstanden.")
+                                  label=_("I have read and understood the above notes."))
 
     confirm3 = forms.BooleanField(required=True,
-                                  label="Ich bin mir bewusst, dass sämtliche mit diesem Account verknüpfte "
-                                        "Informationen gelöscht werden.")
+                                  label=_("I am aware that all information linked to this account will be deleted."))

@@ -1,25 +1,31 @@
 {% extends 'account/base.html' %}
 
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Account löschen{{ block.super }}{% endblock %}
+{% block title %}{% translate "Delete account" %}{{ block.super }}{% endblock %}
 
 {% block content %}
-    <h2>Account löschen</h2>
-    <p>Du brauchst deinen Account nicht mehr? Hier kannst du ihn löschen.</p>
+    <h2>{% translate "Delete account" %}</h2>
+    <p>{% translate "You don't need your account anymore? You can delete it here." %}</p>
 
     <p class="alert alert-warning" role="alert">
-        <b>ACHTUNG:</b> Du bist im Begriff, den Account <u>{{ user.username }}</u> zu löschen!
+        <b>{% translate "WARNING:" %}</b>
+        {% blocktranslate trimmed with username=user.username %}
+            You are about to delete the account <u>{{ username }}</u>!
+        {% endblocktranslate %}
     </p>
 
     <p class="alert alert-danger" role="alert">
-        <b>ACHTUNG:</b> Sobald du dieses Formular absendest, wird dein Account sofort deaktiviert und anschliessend
-        <u>unwiderruflich gelöscht</u>. Bitte überlege dir gut, was du tust!
+        <b>{% translate "WARNING:" %}</b> {% translate "Once you submit this form, your account will be immediately deactivated and then permanently deleted. Please think carefully before proceeding!" %}
     </p>
 
-    <p class="alert alert-info" role="alert"><b>Hinweis:</b> Die endgültige Löschung des Accounts erfolgt manuell innerhalb weniger Tage nach der
-        Deaktivierung. Falls du deinen Account versehentlich gelöscht hast, hast du unter Umständen noch die Möglichkeit, diesen zu reaktivieren.
-        Melde dich dazu umgehend bei <a href="mailto:kontakt@rafaelurben.ch">kontakt@rafaelurben.ch</a>.
+    <p class="alert alert-info" role="alert">
+        {% blocktranslate trimmed %}
+            <b>Note:</b> The final deletion of the account will be
+            done manually within a few days after deactivation. If you deleted your account by mistake, you may still
+            have the possibility to reactivate it. Please contact the owner using the contact information in the help
+            section immediately.
+        {% endblocktranslate %}
     </p>
 
     <form method="post">
@@ -29,8 +35,8 @@
             {{ form }}
         </div>
 
-        <input type="submit" class="btn btn-danger" value="Account deaktivieren & löschen">
-        <a class="btn btn-secondary" href="{% url 'account:home' %}">Abbrechen</a>
+        <input type="submit" class="btn btn-danger" value="{% translate 'Deactivate & delete account' %}">
+        <a class="btn btn-secondary" href="{% url 'account:home' %}">{% translate 'Cancel' %}</a>
     </form>
 
 {% endblock %}

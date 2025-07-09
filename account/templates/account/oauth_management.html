@@ -28,15 +28,15 @@
 
 {% block help %}
     <p>
-        Auf dieser Seite kannst du deine OAuth-Provider verwalten.
+        {% translate "On this page you can manage your OAuth providers." %}
     </p>
     <p>
-        Ein <b>OAuth-Provider</b> ist ein Drittanbieter, welcher dich authentifiziert, damit du
-        dich auf dieser Seite schneller und ohne Passwort einloggen kannst.
+        {% blocktranslate trimmed %}
+            An <b>OAuth provider</b> is a third-party service that authenticates you so you can log in
+            to this site faster and without a password.{% endblocktranslate %}
     </p>
     <p>
-        Die Sicherheit einer Anmeldung mit einem solchen Provider ist abhängig davon, wie gut
-        du dein Konto beim entsprechenden Provider geschützt hast.
+        {% translate "The security of logging in with such a provider depends on how well you protect your account with the respective provider." %}
     </p>
 
     <hr>
