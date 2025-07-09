@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import fields, widgets
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.debug import sensitive_variables
 
 
 class LoginForm(AuthenticationForm):
@@ -16,15 +17,19 @@ class LoginForm(AuthenticationForm):
         self.fields["username"].widget.attrs["autocomplete"] = "username webauthn"
         self.fields["password"].required = False
 
+    @sensitive_variables()
     def clean(self):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
         passkeys = self.cleaned_data.get("passkeys")
 
         if passkeys or (username is not None and password):
-            self.user_cache = authenticate(
-                self.request, username=username, password=password
-            )
+            if passkeys:  # If passkeys are provided, authenticate using them
+                self.user_cache = authenticate(self.request)
+            else:  # Otherwise, authenticate using username and password
+                self.user_cache = authenticate(
+                    self.request, username=username, password=password
+                )
             if self.user_cache is None:
                 raise self.get_invalid_login_error()
             else:
