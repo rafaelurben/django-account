@@ -100,5 +100,28 @@ def delete_account(request):
     return render(request, 'account/account-delete.html', {'form': form})
 
 
+@account_entrypoint()
+@login_required(login_url=reverse_lazy('account:login'))
+def delete_password(request):
+    if not request.user.has_usable_password():
+        messages.error(request, _("You do not currently have a usable password set that could be deleted."))
+        return redirect(reverse('account:home'))
+
+    if not (request.user.userpasskey_set.filter(enabled=True).count() > 0 or request.user.social_auth.count() > 0):
+        messages.error(request,
+                       _("You must have at least one usable passkey or OAuth account to delete your password."))
+        return redirect(reverse('account:home'))
+
+    if request.method == "POST":
+        user = request.user
+        user.set_unusable_password()
+        user.save()
+
+        messages.success(request,
+                         _("Your password has been successfully deleted. Please sign back in using another method."))
+        return redirect(reverse('account:home'))
+    return render(request, 'account/password-delete.html')
+
+
 def error404(request):
     return render(request, 'account/error.html', status=404)

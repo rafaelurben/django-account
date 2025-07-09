@@ -48,6 +48,10 @@ urlpatterns = [
          views.passkey_management,
          name="passkey-management"),
 
+    path('delete-password',
+         views.delete_password,
+         name="delete-password"),
+
     path('delete',
          views.delete_account,
          name="delete-account"),

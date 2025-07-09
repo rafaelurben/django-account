@@ -108,6 +108,10 @@
                             <a class="btn btn-secondary" href="{% url 'account:password-change' %}">
                                 {% translate 'Change password' %}
                             </a>
+
+                            <a class="btn btn-secondary" href="{% url 'account:delete-password' %}">
+                                {% translate 'Delete password' %}
+                            </a>
                         </div>
                     {% else %}
                         <a class="btn btn-secondary" href="{% url 'account:password-reset' %}">

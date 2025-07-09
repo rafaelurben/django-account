@@ -15,6 +15,7 @@ and [django-passkeys](https://github.com/mkalioby/django-passkeys).
     - [x] OAuth2 support (via [social-auth-app-django](https://github.com/python-social-auth/social-app-django))
     - [x] Username/password support (via Django itself)
         - [x] Password change & reset
+        - [x] Passwort deletion
 - [x] "Back to app" button that will keep track on where you want to go
 - [x] Multilingual (currently supported: 🇬🇧 English and 🇩🇪 German)
 - [x] Help section

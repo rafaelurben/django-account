@@ -1,9 +1,9 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.forms import fields, widgets
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.forms import fields, widgets
+
 
 class LoginForm(AuthenticationForm):
     passkeys = fields.CharField(required=False, widget=widgets.HiddenInput(attrs={"id": "passkeys"}))
@@ -35,6 +35,7 @@ class LoginForm(AuthenticationForm):
                 self.add_error("password", "Dieses Feld ist zwingend erforderlich.")
 
         return self.cleaned_data
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:
