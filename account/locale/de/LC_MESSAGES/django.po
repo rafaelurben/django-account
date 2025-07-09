@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 01:10+0200\n"
+"POT-Creation-Date: 2025-07-09 11:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,11 @@ msgstr "Passkey?"
 msgid "OAuth?"
 msgstr "OAuth?"
 
-#: .\account\conf.py:6
+#: .\account\conf.py:9
 msgid "Account management"
 msgstr "Accountverwaltung"
 
-#: .\account\conf.py:7
+#: .\account\conf.py:10
 msgid "this webapp"
 msgstr "diese Webapp"
 
@@ -199,7 +199,14 @@ msgstr "Passwort zurücksetzen"
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: .\account\templates\account\home.html:114
+#: .\account\templates\account\home.html:113
+#: .\account\templates\account\password-delete.html:5
+#: .\account\templates\account\password-delete.html:8
+#: .\account\templates\account\password-delete.html:26
+msgid "Delete password"
+msgstr "Passwort löschen"
+
+#: .\account\templates\account\home.html:118
 #: .\account\templates\account\password-reset-confirm.html:5
 #: .\account\templates\account\password-reset-confirm.html:9
 #: .\account\templates\account\password-reset-confirm.html:21
@@ -207,16 +214,16 @@ msgstr "Passwort ändern"
 msgid "Set password"
 msgstr "Passwort setzen"
 
-#: .\account\templates\account\home.html:122
-#: .\account\templates\account\home.html:127
+#: .\account\templates\account\home.html:126
+#: .\account\templates\account\home.html:131
 msgid "Delete account"
 msgstr "Account löschen"
 
-#: .\account\templates\account\home.html:124
+#: .\account\templates\account\home.html:128
 msgid "Would you like to delete your account?"
 msgstr "Möchtest du deinen Account löschen?"
 
-#: .\account\templates\account\home.html:137
+#: .\account\templates\account\home.html:141
 msgid "On this page you can view your data and make various changes to it."
 msgstr ""
 "Auf dieser Seite kannst du deine Daten ansehen und diverse Änderungen daran "
@@ -343,9 +350,30 @@ msgstr ""
 "dazu."
 
 #: .\account\templates\account\password-change.html:15
+#: .\account\templates\account\password-delete.html:27
 #: .\account\templates\account\password-reset-form.html:36
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: .\account\templates\account\password-delete.html:9
+msgid ""
+"If you no longer want to sign in using a password, you can delete your "
+"password here."
+msgstr ""
+
+#: .\account\templates\account\password-delete.html:12
+msgid "You will no longer be able to sign in using your password."
+msgstr ""
+
+#: .\account\templates\account\password-delete.html:16
+msgid "You will not be able to set a new password by using \"reset password\"!"
+msgstr ""
+
+#: .\account\templates\account\password-delete.html:20
+msgid ""
+"Deleting your password will sign you out. You'll have to sign back in using "
+"another method."
+msgstr ""
 
 #: .\account\templates\account\password-reset-complete.html:12
 msgid "Go to login page"
@@ -481,7 +509,7 @@ msgstr "Mit %(provider_name)s einloggen"
 
 #: .\account\templates\account\snippets\social_manage.html:19
 msgid "Remove authentication method"
-msgstr "Anmeldemethode entferne"
+msgstr "Anmeldemethode entfernen"
 
 #: .\account\templates\account\snippets\social_manage.html:27
 msgid "You have not yet added any OAuth providers to your account."
@@ -498,3 +526,19 @@ msgstr "Weitere Anmeldemethoden"
 #: .\account\views.py:40
 msgid "You are now logged out!"
 msgstr "Du bist nun ausgeloggt."
+
+#: .\account\views.py:107
+msgid "You do not currently have a usable password set that could be deleted."
+msgstr "Du hast derzeit kein verwendbares Passwort gesetzt, das gelöscht werden könnte."
+
+#: .\account\views.py:112
+msgid ""
+"You must have at least one usable passkey or OAuth account to delete your "
+"password."
+msgstr "Du musst mindestens einen verwendbaren Passkey oder ein OAuth-Konto haben, um dein Passwort zu löschen."
+
+#: .\account\views.py:121
+msgid ""
+"Your password has been successfully deleted. Please sign back in using "
+"another method."
+msgstr "Dein Passwort wurde erfolgreich gelöscht. Bitte melde dich mit einer anderen Methode erneut an."
