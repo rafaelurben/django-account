@@ -62,9 +62,11 @@ AUTHENTICATION_BACKENDS = (
 
 # Account pages config
 
-ACCOUNT_APPLICATION_NAME = 'My super cool example app'
-ACCOUNT_HELP_SUPPORT_OPTIONS = [('E-Mail', 'mailto:help@example.com'),
-                                ('Help center', 'https://example.com/help')]
+ACCOUNT_CONFIG = {
+    'APPLICATION_NAME': 'My super cool example app',
+    'HELP_SUPPORT_OPTIONS': [('E-Mail', 'mailto:help@example.com'),
+                             ('Help center', 'https://example.com/help')]
+}
 
 # Passkeys config
 
