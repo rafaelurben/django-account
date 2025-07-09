@@ -66,7 +66,11 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_CONFIG = {
     'APPLICATION_NAME': 'My super cool example app',
     'HELP_SUPPORT_OPTIONS': [('E-Mail', 'mailto:help@example.com'),
-                             ('Help center', 'https://example.com/help')]
+                             ('Help center', 'https://example.com/help')],
+    'PASSKEY_RELATED_ORIGINS': [
+        "https://your.second.domain",
+        "https://your.third.domain",
+    ]
 }
 
 # Passkeys config
@@ -74,11 +78,6 @@ ACCOUNT_CONFIG = {
 FIDO_SERVER_ID = "your.main.domain"
 FIDO_SERVER_NAME = "Your app name"
 KEY_ATTACHMENT = None
-
-PASSKEY_RELATED_ORIGINS = [
-    "https://your.second.domain",
-    "https://your.third.domain",
-]
 
 # Social Auth Config
 

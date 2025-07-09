@@ -9,6 +9,8 @@ class Config:
     APPLICATION_HEADER = _('Account management')
     APPLICATION_NAME = _('this webapp')
 
+    PASSKEY_RELATED_ORIGINS: list[str] = []
+
     BACKENDS_DISPLAY_CONFIG = {
         'google-oauth2': {
             'title': 'Google',
@@ -30,7 +32,7 @@ class Config:
 
     HELP_SUPPORT_OPTIONS: list[tuple[str]] | None = None
 
-    _OPTIONAL_SETTINGS = ['APPLICATION_HEADER', 'APPLICATION_NAME', 'HELP_SUPPORT_OPTIONS']
+    _OPTIONAL_SETTINGS = ['APPLICATION_HEADER', 'APPLICATION_NAME', 'HELP_SUPPORT_OPTIONS', 'PASSKEY_RELATED_ORIGINS']
     _EXTENDABLE_DICT_SETTINGS = ['BACKENDS_DISPLAY_CONFIG']
 
     def __init__(self):

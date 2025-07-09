@@ -1,7 +1,8 @@
-from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse
+
+from account.conf import config
 
 
 def change_password(request):
@@ -14,7 +15,7 @@ def webauthn(request):
     """https://passkeys.dev/docs/advanced/related-origins/"""
 
     return JsonResponse({
-        "origins": getattr(settings, "PASSKEY_RELATED_ORIGINS", []),
+        "origins": config.passkey_related_origins,
     })
 
 
