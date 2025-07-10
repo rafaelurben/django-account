@@ -1,6 +1,6 @@
 # django-account
 
-A simple django app used in [app.rafaelurben.ch/account](https://app.rafaelurben.ch/account) for users to manage their
+A simple django app used in [account.rafaelurben.ch](https://account.rafaelurben.ch) for users to manage their
 profile and authentication methods.
 
 Depends on [social-auth-app-django](https://github.com/python-social-auth/social-app-django)
