@@ -1,0 +1,38 @@
+@startuml
+
+title Cross-Domain Logout Flow (with separate session storage & shared DB)
+
+actor User
+participant "alt.domain\n(account:logout)" as AltLogout #orange
+participant "main.domain\n(account-ext:ext-logout)" as MainExtLogout #lime
+participant "alt.domain\n(account:logout-callback)" as AltCallback #orange
+database DB
+
+== User initiates logout from alt.domain ==
+
+User -> AltLogout : Request logout\nwith ?next=/some/path
+AltLogout -> AltLogout : Logout on alt
+AltLogout -> AltLogout : Store next in session
+AltLogout -> DB : Create MultiDomainAuthFlow\n(uid, nonce, callback_uri=alt/account:logout-callback, status=CREATED, flow_type=LOGOUT)
+AltLogout -> AltLogout : Store uid and nonce\nin session
+AltLogout -> User : Redirect to\nmain/account-ext:ext-logout with uid
+
+== User arrives on main.domain ext-logout ==
+
+User -> MainExtLogout : Visit ext-logout/<uid>/
+MainExtLogout -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, age, status=CREATED, flow_type=LOGOUT)
+MainExtLogout -> DB : Update status=RECEIVED
+MainExtLogout -> MainExtLogout : Logout on main
+MainExtLogout -> DB : Update status=CONFIRMED
+MainExtLogout -> User : Redirect to callback_uri\nalt/account:logout-callback
+
+== Back on alt.domain ==
+
+User -> AltCallback : Visit logout-callback
+AltCallback -> AltCallback : Pop uid from session
+AltCallback -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, status=CONFIRMED, flow_type=LOGOUT)
+AltCallback -> DB : Update status=COMPLETED
+AltCallback -> AltCallback : Pop next from session
+AltCallback -> User : Redirect to next url
+
+@enduml

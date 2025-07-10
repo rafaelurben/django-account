@@ -14,14 +14,14 @@ database DB
 
 User -> AltLogin : Request login\nwith ?next=/some/path
 AltLogin -> AltLogin : Store next in session
-AltLogin -> DB : Create ExtAuthRequest\n(uid, nonce, callback_uri=alt/account:login-callback, status=CREATED)
+AltLogin -> DB : Create MultiDomainAuthFlow\n(uid, nonce, callback_uri=alt/account:login-callback, status=CREATED, flow_type=LOGIN)
 AltLogin -> AltLogin : Store uid and nonce\nin session
 AltLogin -> User : Redirect to\nmain/account-ext:ext-login with uid
 
 == User arrives on main.domain ext-login ==
 
 User -> MainExtLogin : Visit ext-login/<uid>/
-MainExtLogin -> DB : Lookup and validate ExtAuthRequest\n(uid, age, status=CREATED)
+MainExtLogin -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, age, status=CREATED, flow_type=LOGIN)
 MainExtLogin -> DB : Update status=RECEIVED
 MainExtLogin -> MainExtLogin : Store uid in session
 MainExtLogin -> User : Redirect to\nmain/account:login?next=ext-login-done
@@ -35,21 +35,19 @@ MainLogin -> User : Redirect to\nmain/account:ext-login-done
 == Login done, confirmation ==
 
 User -> MainExtDone : Visit ext-login-done
-MainExtDone -> MainExtDone : Read uid from session
-MainExtDone -> DB : Lookup and validate ExtAuthRequest\n(uid, status=RECEIVED)
+MainExtDone -> MainExtDone : Pop uid from session
+MainExtDone -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, status=RECEIVED, flow_type=LOGIN)
 MainExtDone -> DB : Update status=CONFIRMED, user
-MainExtDone -> MainExtDone : Clear uid from session
 MainExtDone -> User : Redirect to callback_uri\nalt/account:login-callback
 
 == Back on alt.domain ==
 
 User -> AltCallback : Visit login-callback
-AltCallback -> AltCallback : Read uid from session
-AltCallback -> DB : Lookup and validate ExtAuthRequest\n(uid, status=CONFIRMED)
+AltCallback -> AltCallback : Pop uid from session
+AltCallback -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, status=CONFIRMED, flow_type=LOGIN)
 AltCallback -> DB : Update status=COMPLETED
 AltCallback -> AltCallback : Log in user
-AltCallback -> AltCallback : Clear uid from session
-AltCallback -> AltCallback : Read next from session
+AltCallback -> AltCallback : Pop next from session
 AltCallback -> User : Redirect to next url
 
 @enduml

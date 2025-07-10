@@ -8,13 +8,18 @@ from django.utils import timezone
 
 # Create your models here.
 
-class MultiDomainAuthRequest(models.Model):
+class MultiDomainAuthFlow(models.Model):
     class Status(models.TextChoices):
         CREATED = 'CREATED', 'Created on alt domain'
         RECEIVED = 'RECEIVED', 'Received by main domain'
         CONFIRMED = 'CONFIRMED', 'Login confirmed by main domain'
         DENIED = 'DENIED', 'Login denied by main domain'
         COMPLETED = 'COMPLETED', 'Login completed on alt domain'
+
+    class FlowType(models.TextChoices):
+        LOGIN = 'LOGIN', 'Cross-domain login'
+        LOGOUT = 'LOGOUT', 'Cross-domain logout'
+        ACCOUNT_HOME = 'ACCOUNT_HOME', 'Cross-domain account settings access'
 
     uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -35,13 +40,22 @@ class MultiDomainAuthRequest(models.Model):
 
     callback_uri = models.URLField(
         max_length=500,
-        help_text="Callback URI to redirect back to alt domain after login."
+        help_text="Callback URI to redirect back to alt domain after completion."
     )
 
     status = models.CharField(
         max_length=10,
         choices=Status.choices,
         default=Status.CREATED,
+        null=False,
+        blank=False,
+    )
+
+    flow_type = models.CharField(
+        max_length=15,
+        choices=FlowType.choices,
+        null=False,
+        blank=False,
     )
 
     timestamp_created = models.DateTimeField(auto_now_add=True,
@@ -64,7 +78,7 @@ class MultiDomainAuthRequest(models.Model):
         return (timezone.now() - self.timestamp_answered).total_seconds() <= max_age_seconds
 
     def __str__(self):
-        return f"ExtAuthRequest(uid={self.uid}, status={self.status}, user={self.user})"
+        return f"MultiDomainAuthFlow(uid={self.uid}, flow_type={self.flow_type}, status={self.status}, user={self.user})"
 
 
 # Proxy models
