@@ -15,7 +15,7 @@ def webauthn(request):
     """https://passkeys.dev/docs/advanced/related-origins/"""
 
     return JsonResponse({
-        "origins": config.passkey_related_origins,
+        "origins": config.PASSKEY_RELATED_ORIGINS,
     })
 
 
