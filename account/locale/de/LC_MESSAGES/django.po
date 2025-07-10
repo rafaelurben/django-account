@@ -1,5 +1,5 @@
 # Copyright (C) 2025 Rafael Urben
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the django-account package.
 # Rafael Urben <dev@rafaelurben.ch>, 2025.
 #
 #, fuzzy
@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 13:42+0200\n"
+"POT-Creation-Date: 2025-07-10 19:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rafael Urben <dev@rafaelurben.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,11 @@ msgstr "Passkey?"
 msgid "OAuth?"
 msgstr "OAuth?"
 
+#: .\account\backends.py:10
+#, python-brace-format
+msgid "{service} account email is not verified!"
+msgstr "{service} Account-E-Mail ist nicht verifiziert!"
+
 #: .\account\conf.py:9
 msgid "Account management"
 msgstr "Accountverwaltung"
@@ -81,11 +86,15 @@ msgstr ""
 
 #: .\account\multidomain\altdomain\flow_helpers_alt.py:18
 msgid "Something went wrong with the authentication flow. Please try again."
-msgstr "Mit dem Authentifizierungsablauf ist etwas schief gelaufen. Bitte versuche es erneut."
+msgstr ""
+"Mit dem Authentifizierungsablauf ist etwas schief gelaufen. Bitte versuche "
+"es erneut."
 
 #: .\account\multidomain\altdomain\flow_helpers_alt.py:32
 msgid "The authentication system is not configured for multi-domain support."
-msgstr "Das Authentifizierungssystem ist nicht für Multi-Domain-Unterstützung konfiguriert."
+msgstr ""
+"Das Authentifizierungssystem ist nicht für Multi-Domain-Unterstützung "
+"konfiguriert."
 
 #: .\account\multidomain\altdomain\flow_helpers_alt.py:62
 msgid "No active authentication flow found."
@@ -95,6 +104,12 @@ msgstr "Kein aktiver Authentifizierungsablauf gefunden."
 #: .\account\multidomain\maindomain\flow_helpers_main.py:62
 msgid "Authentication request not found for UID: {}"
 msgstr "Authentifizierungsanfrage für UID {} nicht gefunden."
+
+#: .\account\multidomain\altdomain\utils.py:18
+msgid ""
+"No compatible authentication backend found for signing in. Please contact "
+"support."
+msgstr "Kein kompatibles Authentifizierungs-Backend zum Einloggen gefunden. Bitte kontaktiere den Support."
 
 #: .\account\multidomain\altdomain\views.py:32
 msgid "You have been successfully logged in."
@@ -106,24 +121,34 @@ msgstr "Du wurdest erfolgreich ausgeloggt."
 
 #: .\account\multidomain\maindomain\flow_helpers_main.py:26
 msgid "Invalid authentication flow. Please go back and try again."
-msgstr "Ungültiger Authentifizierungsablauf. Bitte gehe zurück und versuche es erneut."
+msgstr ""
+"Ungültiger Authentifizierungsablauf. Bitte gehe zurück und versuche es "
+"erneut."
 
 #: .\account\multidomain\maindomain\flow_helpers_main.py:30
 #: .\account\multidomain\maindomain\flow_helpers_main.py:66
 msgid "Authentication flow type mismatch. Please go back and try again."
-msgstr "Typ des Authentifizierungsablaufs stimmt nicht überein. Bitte gehe zurück und versuche es erneut."
+msgstr ""
+"Typ des Authentifizierungsablaufs stimmt nicht überein. Bitte gehe zurück "
+"und versuche es erneut."
 
 #: .\account\multidomain\maindomain\flow_helpers_main.py:34
 msgid "Authentication flow expired. Please go back and try again."
-msgstr "Authentifizierungsablauf ist abgelaufen. Bitte gehe zurück und versuche es erneut."
+msgstr ""
+"Authentifizierungsablauf ist abgelaufen. Bitte gehe zurück und versuche es "
+"erneut."
 
 #: .\account\multidomain\maindomain\flow_helpers_main.py:56
 msgid "No active authentication flow found. Please go back and try again."
-msgstr "Kein aktiver Authentifizierungsablauf gefunden. Bitte gehe zurück und versuche es erneut."
+msgstr ""
+"Kein aktiver Authentifizierungsablauf gefunden. Bitte gehe zurück und "
+"versuche es erneut."
 
 #: .\account\multidomain\maindomain\flow_helpers_main.py:70
 msgid "Authentication request in invalid state. Please go back and try again."
-msgstr "Authentifizierungsanfrage in ungültigem Zustand. Bitte gehe zurück und versuche es erneut."
+msgstr ""
+"Authentifizierungsanfrage in ungültigem Zustand. Bitte gehe zurück und "
+"versuche es erneut."
 
 #: .\account\templates\account\account-delete.html:5
 #: .\account\templates\account\account-delete.html:8
