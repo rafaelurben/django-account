@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 11:58+0200\n"
+"POT-Creation-Date: 2025-07-10 13:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rafael Urben <dev@rafaelurben.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,23 +61,69 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nein"
 
-#: .\account\forms.py:34 .\account\forms.py:36
+#: .\account\forms.py:39 .\account\forms.py:41
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
-#: .\account\forms.py:49
+#: .\account\forms.py:54
 msgid "I really want to delete my account."
 msgstr "Ich möchte meinen Account wirklich löschen."
 
-#: .\account\forms.py:52
+#: .\account\forms.py:57
 msgid "I have read and understood the above notes."
 msgstr "Ich habe die obigen Hinweise gelesen und verstanden."
 
-#: .\account\forms.py:55
+#: .\account\forms.py:60
 msgid "I am aware that all information linked to this account will be deleted."
 msgstr ""
 "Ich bin mir bewusst, dass alle mit diesem Account verknüpften Informationen "
 "gelöscht werden."
+
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:18
+msgid "Something went wrong with the authentication flow. Please try again."
+msgstr "Mit dem Authentifizierungsablauf ist etwas schief gelaufen. Bitte versuche es erneut."
+
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:32
+msgid "The authentication system is not configured for multi-domain support."
+msgstr "Das Authentifizierungssystem ist nicht für Multi-Domain-Unterstützung konfiguriert."
+
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:62
+msgid "No active authentication flow found."
+msgstr "Kein aktiver Authentifizierungsablauf gefunden."
+
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:68
+#: .\account\multidomain\maindomain\flow_helpers_main.py:62
+msgid "Authentication request not found for UID: {}"
+msgstr "Authentifizierungsanfrage für UID {} nicht gefunden."
+
+#: .\account\multidomain\altdomain\views.py:32
+msgid "You have been successfully logged in."
+msgstr "Du wurdest erfolgreich eingeloggt."
+
+#: .\account\multidomain\altdomain\views.py:58
+msgid "You have been successfully logged out."
+msgstr "Du wurdest erfolgreich ausgeloggt."
+
+#: .\account\multidomain\maindomain\flow_helpers_main.py:26
+msgid "Invalid authentication flow. Please go back and try again."
+msgstr "Ungültiger Authentifizierungsablauf. Bitte gehe zurück und versuche es erneut."
+
+#: .\account\multidomain\maindomain\flow_helpers_main.py:30
+#: .\account\multidomain\maindomain\flow_helpers_main.py:66
+msgid "Authentication flow type mismatch. Please go back and try again."
+msgstr "Typ des Authentifizierungsablaufs stimmt nicht überein. Bitte gehe zurück und versuche es erneut."
+
+#: .\account\multidomain\maindomain\flow_helpers_main.py:34
+msgid "Authentication flow expired. Please go back and try again."
+msgstr "Authentifizierungsablauf ist abgelaufen. Bitte gehe zurück und versuche es erneut."
+
+#: .\account\multidomain\maindomain\flow_helpers_main.py:56
+msgid "No active authentication flow found. Please go back and try again."
+msgstr "Kein aktiver Authentifizierungsablauf gefunden. Bitte gehe zurück und versuche es erneut."
+
+#: .\account\multidomain\maindomain\flow_helpers_main.py:70
+msgid "Authentication request in invalid state. Please go back and try again."
+msgstr "Authentifizierungsanfrage in ungültigem Zustand. Bitte gehe zurück und versuche es erneut."
 
 #: .\account\templates\account\account-delete.html:5
 #: .\account\templates\account\account-delete.html:8
