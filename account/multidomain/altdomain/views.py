@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 
 from account.models import MultiDomainAuthFlow
 from account.multidomain.altdomain.flow_helpers_alt import initiate_multidomain_flow, complete_multidomain_flow
+from account.multidomain.altdomain.utils import login_with_any_backend
 from account.multidomain.exceptions import AuthFlowException
 from account.utils import account_entrypoint, pop_session_next, save_session_next
 
@@ -27,8 +28,7 @@ def alt_login_callback(request: HttpRequest):
             flow_type=MultiDomainAuthFlow.FlowType.LOGIN
         )
 
-        # TODO: Better solution? Backend is not guaranteed to exist.
-        login(request, flow.user, backend='passkeys.backend.PasskeyModelBackend')
+        login_with_any_backend(request, flow.user)
         messages.success(request, _("You have been successfully logged in."))
     except AuthFlowException:
         return redirect('account:login')  # try again
