@@ -3,18 +3,24 @@
 import hashlib
 from functools import wraps
 
+NEXT_SESSION_KEY = "account_next"
 
-def save_session_next(request):
-    session = request.session.get("account_next", "")
-    param = request.GET.get("next", "")
-    if param != "":
-        request.session['account_next'] = request.GET.get("next").split("://")[-1]
-    elif session == "":
-        request.session['account_next'] = "/"
+
+def save_session_next(request, value=None):
+    old_next = request.session.get(NEXT_SESSION_KEY, "")
+
+    if value is not None:
+        request.session[NEXT_SESSION_KEY] = value
+    else:
+        param = request.GET.get("next", "")
+        if param != "":
+            request.session[NEXT_SESSION_KEY] = request.GET.get("next").split("://")[-1]
+        elif old_next == "":
+            request.session[NEXT_SESSION_KEY] = "/"
 
 
 def pop_session_next(request, default="/"):
-    return request.session.pop("account_next", default)
+    return request.session.pop(NEXT_SESSION_KEY, default)
 
 
 def account_entrypoint():
