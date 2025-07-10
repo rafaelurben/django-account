@@ -1,0 +1,53 @@
+@startuml
+
+title Cross-Domain Login Flow (with separate session storage & shared DB)
+
+actor User
+participant "alt.domain\n(account:login)" as AltLogin #orange
+participant "main.domain\n(account-ext:ext-login)" as MainExtLogin #lime
+participant "main.domain\n(account:login)" as MainLogin #green
+participant "main.domain\n(account-ext:ext-login-done)" as MainExtDone #lime
+participant "alt.domain\n(account:login-callback)" as AltCallback #orange
+database DB
+
+== User initiates login from alt.domain ==
+
+User -> AltLogin : Request login\nwith ?next=/some/path
+AltLogin -> AltLogin : Store next in session
+AltLogin -> DB : Create MultiDomainAuthFlow\n(uid, nonce, callback_uri=alt/account:login-callback, status=CREATED, flow_type=LOGIN)
+AltLogin -> AltLogin : Store uid and nonce\nin session
+AltLogin -> User : Redirect to\nmain/account-ext:ext-login with uid
+
+== User arrives on main.domain ext-login ==
+
+User -> MainExtLogin : Visit ext-login/<uid>/
+MainExtLogin -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, age, status=CREATED, flow_type=LOGIN)
+MainExtLogin -> DB : Update status=RECEIVED
+MainExtLogin -> MainExtLogin : Store uid in session
+MainExtLogin -> User : Redirect to\nmain/account:login?next=ext-login-done
+
+== Main login form and authentication (skipped if already signed in) ==
+
+User -> MainLogin : Submit login form
+MainLogin -> MainLogin : Authenticate user
+MainLogin -> User : Redirect to\nmain/account:ext-login-done
+
+== Login done, confirmation ==
+
+User -> MainExtDone : Visit ext-login-done
+MainExtDone -> MainExtDone : Pop uid from session
+MainExtDone -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, status=RECEIVED, flow_type=LOGIN)
+MainExtDone -> DB : Update status=CONFIRMED, user
+MainExtDone -> User : Redirect to callback_uri\nalt/account:login-callback
+
+== Back on alt.domain ==
+
+User -> AltCallback : Visit login-callback
+AltCallback -> AltCallback : Pop uid from session
+AltCallback -> DB : Lookup and validate MultiDomainAuthFlow\n(uid, status=CONFIRMED, flow_type=LOGIN)
+AltCallback -> DB : Update status=COMPLETED
+AltCallback -> AltCallback : Log in user
+AltCallback -> AltCallback : Pop next from session
+AltCallback -> User : Redirect to next url
+
+@enduml

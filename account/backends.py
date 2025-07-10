@@ -2,10 +2,12 @@
 OAuth2 backend subclasses (from social-core)
 """
 
+from django.utils.translation import gettext_lazy as _
 from requests import HTTPError
-
-from social_core.exceptions import AuthCanceled
 from social_core.backends import discord, google, github, azuread
+from social_core.exceptions import AuthCanceled
+
+EMAIL_NOT_VERIFIED_MESSAGE = _("{service} account email is not verified!")
 
 
 # Note:
@@ -27,7 +29,7 @@ class DiscordOAuth2(discord.DiscordOAuth2):
             data['display_name'] = f"{response.get('username')}#{response.get('discriminator')}"
 
         if not response.get('verified'):
-            raise AuthCanceled(self, "Discord account email is not verified!")
+            raise AuthCanceled(self, EMAIL_NOT_VERIFIED_MESSAGE.format(service='Discord'))
         return data
 
 
@@ -37,7 +39,7 @@ class GoogleOAuth2(google.GoogleOAuth2):
         data['display_name'] = response.get('email')
 
         if not response.get('email_verified'):
-            raise AuthCanceled(self, "Google account email is not verified!")
+            raise AuthCanceled(self, EMAIL_NOT_VERIFIED_MESSAGE.format(service='Google'))
         return data
 
 
@@ -65,7 +67,7 @@ class GithubOAuth2(github.GithubOAuth2):
         data['display_name'] = response.get('login')
 
         if not response.get('email_verified', False):
-            raise AuthCanceled(self, "GitHub account email is not verified!")
+            raise AuthCanceled(self, EMAIL_NOT_VERIFIED_MESSAGE.format(service='GitHub'))
         return data
 
 
