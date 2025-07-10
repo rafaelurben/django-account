@@ -17,14 +17,18 @@ and [django-passkeys](https://github.com/mkalioby/django-passkeys).
         - [x] Password change & reset
         - [x] Passwort deletion
 - [x] "Back to app" button that will keep track on where you want to go
-- [x] Multilingual (currently supported: 🇬🇧 English and 🇩🇪 German)
-- [x] Help section
+- [x] Multidomain support (see [multidomain docs](docs/multidomain/README.md))
+- [x] Translated - Currently supported:
+    - [x] 🇬🇧 English (base language)
+    - [x] 🇩🇪 German
 
 ### Planned features
 
 See the [project board](https://github.com/users/rafaelurben/projects/10/views/1) for planned features.
 
 ## Example config
+
+Note: Also see [docs/multidomain/README.md](docs/multidomain/README.md) if you need multidomain support.
 
 ### urls.py (excerpt)
 
