@@ -59,7 +59,7 @@ def answer_multidomain_flow(request: HttpRequest,
         flow = MultiDomainAuthFlow.objects.get(uid=stored_uid)
     except MultiDomainAuthFlow.DoesNotExist:
         logger.info("Authentication request not found for UID: %s", stored_uid)
-        raise AuthFlowException(_("Authentication request not found for UID: {}").format(stored_uid))
+        raise AuthFlowException(_("Authentication request not found for UID: {uid}").format(uid=stored_uid))
 
     if flow.flow_type != flow_type:
         logger.warning("Flow type mismatch for UID: %s. Expected: %s, Found: %s", stored_uid, flow_type, flow.flow_type)

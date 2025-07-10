@@ -10,8 +10,6 @@ from account.models import MultiDomainAuthFlow
 from account.multidomain.exceptions import AuthFlowException
 from account.multidomain.maindomain.flow_helpers_main import receive_multidomain_flow, answer_multidomain_flow
 
-SESSION_KEY_UID = 'account_ext_auth_uid'
-
 
 def main_ext_login(request: HttpRequest, flow_uid: uuid.UUID):
     try:

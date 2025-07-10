@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 19:23+0200\n"
+"POT-Creation-Date: 2025-07-10 19:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rafael Urben <dev@rafaelurben.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,14 +102,17 @@ msgstr "Kein aktiver Authentifizierungsablauf gefunden."
 
 #: .\account\multidomain\altdomain\flow_helpers_alt.py:68
 #: .\account\multidomain\maindomain\flow_helpers_main.py:62
-msgid "Authentication request not found for UID: {}"
-msgstr "Authentifizierungsanfrage für UID {} nicht gefunden."
+#, python-brace-format
+msgid "Authentication request not found for UID: {uid}"
+msgstr "Authentifizierungsanfrage für UID {uid} nicht gefunden."
 
-#: .\account\multidomain\altdomain\utils.py:18
+#: .\account\multidomain\altdomain\utils.py:26
 msgid ""
 "No compatible authentication backend found for signing in. Please contact "
 "support."
-msgstr "Kein kompatibles Authentifizierungs-Backend zum Einloggen gefunden. Bitte kontaktiere den Support."
+msgstr ""
+"Kein kompatibles Authentifizierungs-Backend zum Einloggen gefunden. Bitte "
+"kontaktiere den Support."
 
 #: .\account\multidomain\altdomain\views.py:32
 msgid "You have been successfully logged in."
