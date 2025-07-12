@@ -14,15 +14,19 @@ def change_password(request):
 def webauthn(request):
     """https://passkeys.dev/docs/advanced/related-origins/"""
 
-    return JsonResponse({
-        "origins": config.PASSKEY_RELATED_ORIGINS,
-    })
+    return JsonResponse(
+        {
+            "origins": config.PASSKEY_RELATED_ORIGINS,
+        }
+    )
 
 
 def passkey_endpoints(request):
     """https://w3c.github.io/webappsec-passkey-endpoints/passkey-endpoints.html"""
 
-    return JsonResponse({
-        "enroll": request.build_absolute_uri(reverse("account:passkey-management")),
-        "manage": request.build_absolute_uri(reverse("account:passkey-management")),
-    })
+    return JsonResponse(
+        {
+            "enroll": request.build_absolute_uri(reverse("account:passkey-management")),
+            "manage": request.build_absolute_uri(reverse("account:passkey-management")),
+        }
+    )

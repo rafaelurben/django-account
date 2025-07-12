@@ -2,31 +2,31 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.translation import gettext_lazy as _
 
-SETTINGS_KEY = 'ACCOUNT_CONFIG'
+SETTINGS_KEY = "ACCOUNT_CONFIG"
 
 
 class Config:
-    APPLICATION_HEADER = _('Account management')
-    APPLICATION_NAME = _('this webapp')
+    APPLICATION_HEADER = _("Account management")
+    APPLICATION_NAME = _("this webapp")
 
     PASSKEY_RELATED_ORIGINS: list[str] = []
 
     BACKENDS_DISPLAY_CONFIG = {
-        'google-oauth2': {
-            'title': 'Google',
-            'icon': 'account/icons/logo_google-oauth2.svg',
+        "google-oauth2": {
+            "title": "Google",
+            "icon": "account/icons/logo_google-oauth2.svg",
         },
-        'github': {
-            'title': 'GitHub',
-            'icon': 'account/icons/logo_github.svg',
+        "github": {
+            "title": "GitHub",
+            "icon": "account/icons/logo_github.svg",
         },
-        'discord': {
-            'title': 'Discord',
-            'icon': 'account/icons/logo_discord.svg',
+        "discord": {
+            "title": "Discord",
+            "icon": "account/icons/logo_discord.svg",
         },
-        'azuread-oauth2': {
-            'title': 'Microsoft',
-            'icon': 'account/icons/logo_azuread-oauth2.svg',
+        "azuread-oauth2": {
+            "title": "Microsoft",
+            "icon": "account/icons/logo_azuread-oauth2.svg",
         },
     }
 
@@ -34,9 +34,14 @@ class Config:
 
     MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL: str = None
 
-    _OPTIONAL_SETTINGS = ['APPLICATION_HEADER', 'APPLICATION_NAME', 'HELP_SUPPORT_OPTIONS', 'PASSKEY_RELATED_ORIGINS',
-                          'MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL']
-    _EXTENDABLE_DICT_SETTINGS = ['BACKENDS_DISPLAY_CONFIG']
+    _OPTIONAL_SETTINGS = [
+        "APPLICATION_HEADER",
+        "APPLICATION_NAME",
+        "HELP_SUPPORT_OPTIONS",
+        "PASSKEY_RELATED_ORIGINS",
+        "MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL",
+    ]
+    _EXTENDABLE_DICT_SETTINGS = ["BACKENDS_DISPLAY_CONFIG"]
 
     def __init__(self):
         user_settings: dict | None = getattr(settings, SETTINGS_KEY, None)
@@ -44,7 +49,9 @@ class Config:
         if user_settings is None:
             return
         if not isinstance(user_settings, dict):
-            raise ImproperlyConfigured(f"The settings key {SETTINGS_KEY} must be a dictionary, if present.")
+            raise ImproperlyConfigured(
+                f"The settings key {SETTINGS_KEY} must be a dictionary, if present."
+            )
 
         for key in self._OPTIONAL_SETTINGS:
             if key in user_settings:
@@ -58,7 +65,9 @@ class Config:
         # Check for redundant settings
         for key in user_settings:
             if key not in self._OPTIONAL_SETTINGS and key not in self._EXTENDABLE_DICT_SETTINGS:
-                raise ImproperlyConfigured(f"The key '{key}' is not a valid setting for {SETTINGS_KEY}.")
+                raise ImproperlyConfigured(
+                    f"The key '{key}' is not a valid setting for {SETTINGS_KEY}."
+                )
 
 
 config = Config()

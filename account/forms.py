@@ -8,7 +8,9 @@ from django.views.decorators.debug import sensitive_variables
 
 
 class LoginForm(AuthenticationForm):
-    passkeys = fields.CharField(required=False, widget=widgets.HiddenInput(attrs={"id": "passkeys"}))
+    passkeys = fields.CharField(
+        required=False, widget=widgets.HiddenInput(attrs={"id": "passkeys"})
+    )
 
     def __init__(self, request=None, *args, **kwargs):
         super().__init__(request, *args, **kwargs)
@@ -27,9 +29,7 @@ class LoginForm(AuthenticationForm):
             if passkeys:  # If passkeys are provided, authenticate using them
                 self.user_cache = authenticate(self.request)
             else:  # Otherwise, authenticate using username and password
-                self.user_cache = authenticate(
-                    self.request, username=username, password=password
-                )
+                self.user_cache = authenticate(self.request, username=username, password=password)
             if self.user_cache is None:
                 raise self.get_invalid_login_error()
             else:
@@ -50,11 +50,13 @@ class ProfileForm(forms.ModelForm):
 
 
 class DeleteForm(forms.Form):
-    confirm1 = forms.BooleanField(required=True,
-                                  label=_("I really want to delete my account."))
+    confirm1 = forms.BooleanField(required=True, label=_("I really want to delete my account."))
 
-    confirm2 = forms.BooleanField(required=True,
-                                  label=_("I have read and understood the above notes."))
+    confirm2 = forms.BooleanField(
+        required=True, label=_("I have read and understood the above notes.")
+    )
 
-    confirm3 = forms.BooleanField(required=True,
-                                  label=_("I am aware that all information linked to this account will be deleted."))
+    confirm3 = forms.BooleanField(
+        required=True,
+        label=_("I am aware that all information linked to this account will be deleted."),
+    )

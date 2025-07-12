@@ -12,18 +12,22 @@ from account.conf import config
 from account.models import MultiDomainAuthFlow
 from account.multidomain.exceptions import AuthFlowException
 
-SESSION_KEY_PREFIX_UID = 'account_alt_auth_uid_'
-SESSION_KEY_PREFIX_NONCE = 'account_alt_auth_nonce_'
+SESSION_KEY_PREFIX_UID = "account_alt_auth_uid_"
+SESSION_KEY_PREFIX_NONCE = "account_alt_auth_nonce_"
 
-GENERIC_AUTH_FLOW_EXCEPTION_MESSAGE = _("Something went wrong with the authentication flow. Please try again.")
+GENERIC_AUTH_FLOW_EXCEPTION_MESSAGE = _(
+    "Something went wrong with the authentication flow. Please try again."
+)
 
 logger = logging.getLogger(__name__)
 
 
-def initiate_multidomain_flow(request: HttpRequest,
-                              flow_type: MultiDomainAuthFlow.FlowType,
-                              alt_callback_viewname: str,
-                              main_ext_viewname: str) -> HttpResponse:
+def initiate_multidomain_flow(
+    request: HttpRequest,
+    flow_type: MultiDomainAuthFlow.FlowType,
+    alt_callback_viewname: str,
+    main_ext_viewname: str,
+) -> HttpResponse:
     """
     Initialize a new multi-domain authentication flow.
     """
@@ -35,22 +39,23 @@ def initiate_multidomain_flow(request: HttpRequest,
     flow = MultiDomainAuthFlow.objects.create(
         flow_type=flow_type,
         callback_uri=request.build_absolute_uri(reverse(alt_callback_viewname)),
-        nonce=secrets.token_urlsafe(32)
+        nonce=secrets.token_urlsafe(32),
     )
 
     request.session[SESSION_KEY_PREFIX_UID + flow_type] = str(flow.uid)
     request.session[SESSION_KEY_PREFIX_NONCE + flow_type] = flow.nonce
 
-    ext_base_url = config.MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL.rstrip('/')
-    url = ext_base_url + reverse(main_ext_viewname,
-                                 urlconf='account.multidomain.maindomain.urls',
-                                 args=[flow.uid])
+    ext_base_url = config.MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL.rstrip("/")
+    url = ext_base_url + reverse(
+        main_ext_viewname, urlconf="account.multidomain.maindomain.urls", args=[flow.uid]
+    )
 
     return redirect(url)
 
 
-def complete_multidomain_flow(request: HttpRequest,
-                              flow_type: MultiDomainAuthFlow.FlowType) -> MultiDomainAuthFlow:
+def complete_multidomain_flow(
+    request: HttpRequest, flow_type: MultiDomainAuthFlow.FlowType
+) -> MultiDomainAuthFlow:
     """
     Complete the multi-domain authentication flow by verifying the session and flow state.
     """
@@ -65,10 +70,17 @@ def complete_multidomain_flow(request: HttpRequest,
         flow = MultiDomainAuthFlow.objects.get(uid=stored_uid)
     except MultiDomainAuthFlow.DoesNotExist:
         logger.info("Authentication request not found for UID: %s", stored_uid)
-        raise AuthFlowException(_("Authentication request not found for UID: {uid}").format(uid=stored_uid))
+        raise AuthFlowException(
+            _("Authentication request not found for UID: {uid}").format(uid=stored_uid)
+        )
 
     if flow.flow_type != flow_type:
-        logger.warning("Flow type mismatch for UID: %s. Expected: %s, Found: %s", stored_uid, flow_type, flow.flow_type)
+        logger.warning(
+            "Flow type mismatch for UID: %s. Expected: %s, Found: %s",
+            stored_uid,
+            flow_type,
+            flow.flow_type,
+        )
         raise AuthFlowException(GENERIC_AUTH_FLOW_EXCEPTION_MESSAGE)
 
     if flow.nonce != stored_nonce:
@@ -76,7 +88,11 @@ def complete_multidomain_flow(request: HttpRequest,
         raise AuthFlowException(GENERIC_AUTH_FLOW_EXCEPTION_MESSAGE)
 
     if not flow.is_recently_confirmed():
-        logger.info("Authentication request not recently confirmed for UID: %s. State: %s", stored_uid, flow.status)
+        logger.info(
+            "Authentication request not recently confirmed for UID: %s. State: %s",
+            stored_uid,
+            flow.status,
+        )
         raise AuthFlowException(GENERIC_AUTH_FLOW_EXCEPTION_MESSAGE)
 
     flow.status = MultiDomainAuthFlow.Status.COMPLETED

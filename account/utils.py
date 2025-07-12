@@ -25,7 +25,7 @@ def pop_session_next(request, default="/"):
 
 def account_entrypoint():
     """Decorator for views
-    
+
     Saves the next param (if available) to the session"""
 
     def decorator(function):

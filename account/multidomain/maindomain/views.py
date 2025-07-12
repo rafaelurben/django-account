@@ -8,7 +8,10 @@ from django.urls import reverse
 
 from account.models import MultiDomainAuthFlow
 from account.multidomain.exceptions import AuthFlowException
-from account.multidomain.maindomain.flow_helpers_main import receive_multidomain_flow, answer_multidomain_flow
+from account.multidomain.maindomain.flow_helpers_main import (
+    receive_multidomain_flow,
+    answer_multidomain_flow,
+)
 
 
 def main_ext_login(request: HttpRequest, flow_uid: uuid.UUID):
@@ -20,13 +23,13 @@ def main_ext_login(request: HttpRequest, flow_uid: uuid.UUID):
         )
     except AuthFlowException as e:
         messages.error(request, str(e))
-        return redirect('account:login')
+        return redirect("account:login")
 
-    done_url = reverse('account-ext:ext-login-done')
+    done_url = reverse("account-ext:ext-login-done")
     if request.user.is_authenticated:
         return redirect(done_url)
 
-    return redirect(reverse('account:login') + f"?next={done_url}")
+    return redirect(reverse("account:login") + f"?next={done_url}")
 
 
 def main_ext_login_done(request: HttpRequest):
@@ -39,7 +42,7 @@ def main_ext_login_done(request: HttpRequest):
         )
     except AuthFlowException as e:
         messages.error(request, str(e))
-        return redirect('account:login')
+        return redirect("account:login")
 
     return redirect(flow.callback_uri)
 
@@ -60,7 +63,7 @@ def main_ext_logout(request: HttpRequest, flow_uid: uuid.UUID):
         )
     except AuthFlowException as e:
         messages.error(request, str(e))
-        return redirect('account:logout')
+        return redirect("account:logout")
 
     return redirect(flow.callback_uri)
 
@@ -75,8 +78,8 @@ def main_ext_home(request: HttpRequest, flow_uid: uuid.UUID):
     except AuthFlowException as e:
         messages.warning(request, str(e))
 
-    done_url = reverse('account-ext:ext-home-done')
-    return redirect(reverse('account:home') + f"?next={done_url}")
+    done_url = reverse("account-ext:ext-home-done")
+    return redirect(reverse("account:home") + f"?next={done_url}")
 
 
 def main_ext_home_done(request: HttpRequest):
@@ -88,6 +91,6 @@ def main_ext_home_done(request: HttpRequest):
         )
     except AuthFlowException as e:
         messages.error(request, str(e))
-        return redirect('account:home')
+        return redirect("account:home")
 
     return redirect(flow.callback_uri)

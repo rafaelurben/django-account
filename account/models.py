@@ -8,18 +8,19 @@ from django.utils import timezone
 
 # Create your models here.
 
+
 class MultiDomainAuthFlow(models.Model):
     class Status(models.TextChoices):
-        CREATED = 'CREATED', 'Created on alt domain'
-        RECEIVED = 'RECEIVED', 'Received by main domain'
-        CONFIRMED = 'CONFIRMED', 'Login confirmed by main domain'
-        DENIED = 'DENIED', 'Login denied by main domain'
-        COMPLETED = 'COMPLETED', 'Login completed on alt domain'
+        CREATED = "CREATED", "Created on alt domain"
+        RECEIVED = "RECEIVED", "Received by main domain"
+        CONFIRMED = "CONFIRMED", "Login confirmed by main domain"
+        DENIED = "DENIED", "Login denied by main domain"
+        COMPLETED = "COMPLETED", "Login completed on alt domain"
 
     class FlowType(models.TextChoices):
-        LOGIN = 'LOGIN', 'Cross-domain login'
-        LOGOUT = 'LOGOUT', 'Cross-domain logout'
-        ACCOUNT_HOME = 'ACCOUNT_HOME', 'Cross-domain account settings access'
+        LOGIN = "LOGIN", "Cross-domain login"
+        LOGOUT = "LOGOUT", "Cross-domain logout"
+        ACCOUNT_HOME = "ACCOUNT_HOME", "Cross-domain account settings access"
 
     uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -28,19 +29,15 @@ class MultiDomainAuthFlow(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='multidomain_auth_requests'
+        related_name="multidomain_auth_requests",
     )
 
     nonce = models.CharField(
-        max_length=64,
-        null=False,
-        blank=False,
-        help_text="Nonce to bind to session for security."
+        max_length=64, null=False, blank=False, help_text="Nonce to bind to session for security."
     )
 
     callback_uri = models.URLField(
-        max_length=500,
-        help_text="Callback URI to redirect back to alt domain after completion."
+        max_length=500, help_text="Callback URI to redirect back to alt domain after completion."
     )
 
     status = models.CharField(
@@ -58,14 +55,22 @@ class MultiDomainAuthFlow(models.Model):
         blank=False,
     )
 
-    timestamp_created = models.DateTimeField(auto_now_add=True,
-                                             help_text="Timestamp when the request was created on the alt domain.")
-    timestamp_received = models.DateTimeField(null=True, blank=True,
-                                              help_text="Timestamp when the request was received by the main domain.")
-    timestamp_answered = models.DateTimeField(null=True, blank=True,
-                                              help_text="Timestamp when the request was confirmed/denied on the main domain.")
-    timestamp_completed = models.DateTimeField(null=True, blank=True,
-                                               help_text="Timestamp when the login was completed on the alt domain.")
+    timestamp_created = models.DateTimeField(
+        auto_now_add=True, help_text="Timestamp when the request was created on the alt domain."
+    )
+    timestamp_received = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Timestamp when the request was received by the main domain.",
+    )
+    timestamp_answered = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Timestamp when the request was confirmed/denied on the main domain.",
+    )
+    timestamp_completed = models.DateTimeField(
+        null=True, blank=True, help_text="Timestamp when the login was completed on the alt domain."
+    )
 
     def is_recently_created(self, max_age_seconds: int = 120) -> bool:
         if self.status != self.Status.CREATED or self.timestamp_created is None:
@@ -82,6 +87,7 @@ class MultiDomainAuthFlow(models.Model):
 
 
 # Proxy models
+
 
 class User(DjangoUser):
     class Meta(DjangoUser.Meta):

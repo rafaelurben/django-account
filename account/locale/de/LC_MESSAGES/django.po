@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 19:44+0200\n"
+"POT-Creation-Date: 2025-07-12 21:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rafael Urben <dev@rafaelurben.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\account\admin.py:17
+#: .\account\admin.py:18
 msgid "passkey"
 msgstr "Passkey"
 
-#: .\account\admin.py:18
+#: .\account\admin.py:19
 msgid "passkeys"
 msgstr "Passkeys"
 
-#: .\account\admin.py:29
+#: .\account\admin.py:30
 msgid "third-party account"
 msgstr "Drittanbieter-Account"
 
-#: .\account\admin.py:30
+#: .\account\admin.py:31
 msgid "third-party accounts"
 msgstr "Drittanbieter-Accounts"
 
-#: .\account\admin.py:65 .\account\filters.py:9
+#: .\account\admin.py:89 .\account\filters.py:9
 msgid "password?"
 msgstr "Passwort?"
 
-#: .\account\admin.py:69 .\account\filters.py:30
+#: .\account\admin.py:95 .\account\filters.py:32
 msgid "passkey?"
 msgstr "Passkey?"
 
-#: .\account\admin.py:73 .\account\filters.py:49
+#: .\account\admin.py:100 .\account\filters.py:51
 msgid "OAuth?"
 msgstr "OAuth?"
 
@@ -58,11 +58,11 @@ msgstr "Accountverwaltung"
 msgid "this webapp"
 msgstr "diese Webapp"
 
-#: .\account\filters.py:13 .\account\filters.py:34 .\account\filters.py:53
+#: .\account\filters.py:13 .\account\filters.py:36 .\account\filters.py:55
 msgid "Yes"
 msgstr "Ja"
 
-#: .\account\filters.py:13 .\account\filters.py:34 .\account\filters.py:53
+#: .\account\filters.py:13 .\account\filters.py:36 .\account\filters.py:55
 msgid "No"
 msgstr "Nein"
 
@@ -70,43 +70,43 @@ msgstr "Nein"
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
-#: .\account\forms.py:54
+#: .\account\forms.py:53
 msgid "I really want to delete my account."
 msgstr "Ich möchte meinen Account wirklich löschen."
 
-#: .\account\forms.py:57
+#: .\account\forms.py:56
 msgid "I have read and understood the above notes."
 msgstr "Ich habe die obigen Hinweise gelesen und verstanden."
 
-#: .\account\forms.py:60
+#: .\account\forms.py:61
 msgid "I am aware that all information linked to this account will be deleted."
 msgstr ""
 "Ich bin mir bewusst, dass alle mit diesem Account verknüpften Informationen "
 "gelöscht werden."
 
-#: .\account\multidomain\altdomain\flow_helpers_alt.py:18
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:19
 msgid "Something went wrong with the authentication flow. Please try again."
 msgstr ""
 "Mit dem Authentifizierungsablauf ist etwas schief gelaufen. Bitte versuche "
 "es erneut."
 
-#: .\account\multidomain\altdomain\flow_helpers_alt.py:32
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:36
 msgid "The authentication system is not configured for multi-domain support."
 msgstr ""
 "Das Authentifizierungssystem ist nicht für Multi-Domain-Unterstützung "
 "konfiguriert."
 
-#: .\account\multidomain\altdomain\flow_helpers_alt.py:62
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:67
 msgid "No active authentication flow found."
 msgstr "Kein aktiver Authentifizierungsablauf gefunden."
 
-#: .\account\multidomain\altdomain\flow_helpers_alt.py:68
-#: .\account\multidomain\maindomain\flow_helpers_main.py:62
+#: .\account\multidomain\altdomain\flow_helpers_alt.py:74
+#: .\account\multidomain\maindomain\flow_helpers_main.py:74
 #, python-brace-format
 msgid "Authentication request not found for UID: {uid}"
 msgstr "Authentifizierungsanfrage für UID {uid} nicht gefunden."
 
-#: .\account\multidomain\altdomain\utils.py:26
+#: .\account\multidomain\altdomain\utils.py:35
 msgid ""
 "No compatible authentication backend found for signing in. Please contact "
 "support."
@@ -118,7 +118,7 @@ msgstr ""
 msgid "You have been successfully logged in."
 msgstr "Du wurdest erfolgreich eingeloggt."
 
-#: .\account\multidomain\altdomain\views.py:58
+#: .\account\multidomain\altdomain\views.py:55
 msgid "You have been successfully logged out."
 msgstr "Du wurdest erfolgreich ausgeloggt."
 
@@ -128,26 +128,26 @@ msgstr ""
 "Ungültiger Authentifizierungsablauf. Bitte gehe zurück und versuche es "
 "erneut."
 
-#: .\account\multidomain\maindomain\flow_helpers_main.py:30
-#: .\account\multidomain\maindomain\flow_helpers_main.py:66
+#: .\account\multidomain\maindomain\flow_helpers_main.py:36
+#: .\account\multidomain\maindomain\flow_helpers_main.py:85
 msgid "Authentication flow type mismatch. Please go back and try again."
 msgstr ""
 "Typ des Authentifizierungsablaufs stimmt nicht überein. Bitte gehe zurück "
 "und versuche es erneut."
 
-#: .\account\multidomain\maindomain\flow_helpers_main.py:34
+#: .\account\multidomain\maindomain\flow_helpers_main.py:41
 msgid "Authentication flow expired. Please go back and try again."
 msgstr ""
 "Authentifizierungsablauf ist abgelaufen. Bitte gehe zurück und versuche es "
 "erneut."
 
-#: .\account\multidomain\maindomain\flow_helpers_main.py:56
+#: .\account\multidomain\maindomain\flow_helpers_main.py:66
 msgid "No active authentication flow found. Please go back and try again."
 msgstr ""
 "Kein aktiver Authentifizierungsablauf gefunden. Bitte gehe zurück und "
 "versuche es erneut."
 
-#: .\account\multidomain\maindomain\flow_helpers_main.py:70
+#: .\account\multidomain\maindomain\flow_helpers_main.py:95
 msgid "Authentication request in invalid state. Please go back and try again."
 msgstr ""
 "Authentifizierungsanfrage in ungültigem Zustand. Bitte gehe zurück und "
@@ -691,17 +691,17 @@ msgstr "Account verwalten"
 msgid "Other login methods"
 msgstr "Weitere Anmeldemethoden"
 
-#: .\account\views.py:40
+#: .\account\views.py:45
 msgid "You are now logged out!"
 msgstr "Du bist nun ausgeloggt."
 
-#: .\account\views.py:107
+#: .\account\views.py:116
 msgid "You do not currently have a usable password set that could be deleted."
 msgstr ""
 "Du hast derzeit kein verwendbares Passwort gesetzt, das gelöscht werden "
 "könnte."
 
-#: .\account\views.py:112
+#: .\account\views.py:127
 msgid ""
 "You must have at least one usable passkey or OAuth account to delete your "
 "password."
@@ -709,7 +709,7 @@ msgstr ""
 "Du musst mindestens einen verwendbaren Passkey oder ein OAuth-Konto haben, "
 "um dein Passwort zu löschen."
 
-#: .\account\views.py:121
+#: .\account\views.py:140
 msgid ""
 "Your password has been successfully deleted. Please sign back in using "
 "another method."
