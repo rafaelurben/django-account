@@ -8,7 +8,6 @@ from django.utils.translation import gettext as _
 from account.filters import HasUsablePasswordFilter, HasUsablePasskeyFilter, HasUsableOAuthFilter
 from account.models import User
 
-
 # We're adding a custom admin that extends the default user admin
 
 

@@ -13,7 +13,6 @@ from django.utils.translation import gettext as _
 from .forms import ProfileForm, DeleteForm
 from .utils import pop_session_next, account_entrypoint, get_avatar_url
 
-
 # Create your views here.
 
 
