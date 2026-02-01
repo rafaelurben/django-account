@@ -36,6 +36,16 @@
 
 <body>
 
+<script>
+    // Automatically update the theme based on the user's system preference.
+    function updateTheme() {
+        document.documentElement.dataset.bsTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+    updateTheme();
+</script>
+
 {% include 'account/snippets/menubar.html' %}
 
 <div class="px-3 px-lg-4 py-3 container-fluid">
@@ -55,7 +65,7 @@
             <p class="text-secondary">
                 {% translate 'This is the account management for your account for all webapps hosted on this website.' %}
                 <br><br>
-                (c) 2022-2025, Rafael Urben
+                (c) 2022-2026, Rafael Urben
             </p>
             {% account_config 'HELP_SUPPORT_OPTIONS' as HELP_SUPPORT_OPTIONS %}
             {% if HELP_SUPPORT_OPTIONS %}
@@ -78,7 +88,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
         integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{% static 'account/js/autodarkmode.js' %}"></script>
 
 {% block scripts %}
 
