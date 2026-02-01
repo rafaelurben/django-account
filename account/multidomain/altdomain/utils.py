@@ -28,7 +28,7 @@ def login_with_any_backend(request, user):
                 ImproperlyConfigured,
             ):
                 logger.warning(
-                    "Backend %s failed to authenticate user %s: %s", backend, user, exc_info=True
+                    "Backend %s failed to authenticate user %s.", backend, user, exc_info=True
                 )
                 continue
     raise AuthFlowException(

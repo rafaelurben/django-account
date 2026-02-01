@@ -31,7 +31,7 @@
     {% for backend in backends.backends %}
         {% backend_display_config backend as display_config %}
     	<div>
-            <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' backend %}?next={{ next }}" role="button">
+            <a class="btn btn-outline-dark" href="{% url 'social-auth:begin' backend %}?next={{ next }}">
                 <img alt="Logo von {{ display_config.title }}" src="{% static display_config.icon %}" />
                 <span>
                     {% with provider_name=display_config.title %}

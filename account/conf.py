@@ -32,7 +32,7 @@ class Config:
 
     HELP_SUPPORT_OPTIONS: list[tuple[str]] | None = None
 
-    MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL: str = None
+    MULTIDOMAIN_MAINDOMAIN_EXT_ACCOUNT_BASE_URL: str | None = None
 
     _OPTIONAL_SETTINGS = [
         "APPLICATION_HEADER",

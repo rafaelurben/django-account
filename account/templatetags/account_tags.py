@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.simple_tag(name="backend_display_config")
 def get_backend_display_config(backend):
-    return config.BACKENDS_DISPLAY_CONFIG.get(backend, dict())
+    return config.BACKENDS_DISPLAY_CONFIG.get(backend, {})
 
 
 @register.simple_tag(name="account_config")

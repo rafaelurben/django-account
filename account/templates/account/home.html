@@ -61,7 +61,7 @@
                         {% translate 'Passkey' %}
                     </h5>
                     <p>{% translate 'The newest and most secure option.' context 'Passkey description' %}</p>
-                    <a class="mb-3 btn btn-secondary" href="{% url 'account:passkey-management' %}" role="link">
+                    <a class="mb-3 btn btn-secondary" href="{% url 'account:passkey-management' %}">
                         <img src="{% static 'passkeys/imgs/FIDO-Passkey_Icon-White.png' %}" style="width: 20px"
                              class="me-1"
                              alt="Passkey icon">
@@ -85,8 +85,7 @@
                         {% endfor %}
                     </p>
                     <a class="mb-3 btn btn-secondary d-inline-flex align-items-center gap-1"
-                       href="{% url 'account:oauth-management' %}"
-                       role="link">
+                       href="{% url 'account:oauth-management' %}">
                         {% translate 'Manage OAuth providers' %}
                     </a>
 
