@@ -31,7 +31,7 @@ requires-python = ">= 3.12"
 dependencies = [
     "Django>=5.2, <7",
     "social-auth-app-django>=5.0.0, <6",
-    "django-passkeys>=1.2.7, <2",
+    "django-passkeys>=2, <3",
 ]
 dynamic = ["version"]
 
