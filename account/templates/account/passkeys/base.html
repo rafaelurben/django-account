@@ -7,16 +7,17 @@
 {% block extrahead %}
     {{ block.super }}
 
-    <script
-            src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    {# JQuery needed by django-passkeys #}
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+            integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
             crossorigin="anonymous"></script>
+
     {% block head %}
     {% endblock %}
 {% endblock %}
 
 {% block content %}
-	<h2>{% translate 'Passkeys' %}</h2>
+    <h2>{% translate 'Passkeys' %}</h2>
     <p>{% translate 'You can manage your saved passkeys here.' %}</p>
 
     <p>
