@@ -1,3 +1,0 @@
-django==6.0.5
-social-auth-app-django==5.9.0
-django-passkeys==2.1
